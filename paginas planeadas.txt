@@ -4,7 +4,7 @@ inicial:
 	-lembretes para planos em datas proximas
 calendário
 utilizador
-login
+login/registo
 página da disciplina:
 	-inclui recomendação de exercícios
 	-descrição das matérias lecionadas
