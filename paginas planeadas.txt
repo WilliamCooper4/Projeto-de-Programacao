@@ -1,0 +1,11 @@
+coloquem as páginas que acham que devemos fazer neste ficheiro
+
+inicial:
+	-lembretes para planos em datas proximas
+calendário
+utilizador
+login
+página da disciplina:
+	-inclui recomendação de exercícios
+	-descrição das matérias lecionadas
+	-material de apoio ao estudo (ex: livros recomendados, tutorias sobre partes da disciplina, etc)
