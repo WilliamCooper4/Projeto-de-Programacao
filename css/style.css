@@ -1,0 +1,53 @@
+body {
+	margin: 0;
+	font-family: "Maiandra GD",Arial, sans-serif;
+	background: #bcf;
+}
+
+/* Barra de navegação */
+nav {
+	background: #47a;
+	border-bottom: 0.2rem solid #128;
+	padding: 2rem 3rem;       /* Aumenta altura e espaçamento */
+	display: flex;
+	gap: 3rem;                /* Mais espaço entre itens */
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2rem;        /* Torna o texto maior */
+}
+
+/* Links normais */
+nav a {
+	text-decoration: none;
+	color: #FFF;
+	font-weight: bold;
+}
+
+/* Botão de Login */
+nav a.login-btn {
+	background: #fff;
+	color: #47a;
+	padding: 8px 16px;
+	border-radius: 6px;
+	font-weight: bold;
+}
+
+nav a.login-btn:hover {
+	background: #eef;
+}
+
+/* Hover dos links normais */
+nav a:hover:not(.login-btn) {
+	text-decoration: underline;
+}
+
+#app {
+	padding: 20px;
+}
+
+@font-face {
+	font-family: "Maiandra GD";
+	src: url("./MAIAN.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
