@@ -4,7 +4,6 @@ user = {
 	password: "password",
 	roles: ["admin"],
 	profilepic: "image",
-	description: "description",
 	classes: [
 		"Computação Gráfica",
 		"Programação Web",
@@ -12,5 +11,12 @@ user = {
 	],
 	lvl: 1,
 	exp: 0,
-	badges: [],
+	streak: 0,
+	reminders: {
+		"Test":{
+			time:1763310003,
+			class:"Computação Gráfica",
+			type:"idk"
+		}
+	}
 }
