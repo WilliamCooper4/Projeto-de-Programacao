@@ -78,3 +78,7 @@ nav a:hover:not(.login-btn) {
     left: 20px;
     margin-top: 10px;
 }
+
+.invisible{
+    display: none;
+}   
