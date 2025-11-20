@@ -9,6 +9,8 @@
 
 	<!-- css -->
 	<link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/calendario.css">
+    <link rel="stylesheet" href="../css/test.css"> <!-- css de teste remover depois -->
 </head>
 
 <body>
@@ -18,24 +20,27 @@
 		<a href="#">Disciplinas</a>
 		<a href="#">Calendário</a>
 		<a href="#" class="login-btn">Login</a>
+        
 	</nav>
-
-    <div class="side-calendar-container">
+    <button class="test1" id="testbtn">test</button> <!-- botão de teste para sidebar remover depois -->
+    <div class="minisidebar"></div>
+    <div class="side-calendar-container" id="sidebar">
         <p>side bar</p>
         <div class="mini-calendar">
-            <p> <br> <br>Placeholder calendar</p>
+
+            <p class="black-text"> <br> <br>Placeholder calendar</p>
         </div>
-        <button id="testbtn">test</button>
+        
         <div class="calendar-filter">
             <form>
                 <H4>Filtros</H4>
-                <input type="checkbox" name="class1" id="class1" checked>
+                <input type="radio" name="class1" id="class1">
                 <label for="class1">Disciplina 1</label><br>
-                <input type="checkbox" name="class2" id="class2" checked>  
+                <input type="radio" name="class2" id="class2">  
                 <label for="class2">Disciplina 2</label><br>
-                <input type="checkbox" name="class3" id="class3" checked>  
+                <input type="radio" name="class3" id="class3">  
                 <label for="class3">Disciplina 3</label><br>
-                <input type="checkbox" name="class4" id="class4" checked>  
+                <input type="radio" name="class4" id="class4">  
                 <label for="class4">Disciplina 4</label><br>
             </form>
         </div>
@@ -44,7 +49,7 @@
 	<!-- app Vue -->
 	<div id="app"></div>
 
-	<script type="module" src="/src/main.js"></script>~
+	<script type="module" src="/src/main.js"></script>
     <script type="module" src="/js/calendario.js"></script>
 </body>
 </html>
