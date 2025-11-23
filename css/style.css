@@ -52,16 +52,22 @@ nav a:hover:not(.login-btn) {
 	font-style: normal;
 }
 
-.side-calendar-container{
-    position: absolute;
+.side-bar{
+    position: fixed;
     top:  6.45rem;
     margin-top: auto;
     background-color: #47a;
     border-right:0.2rem solid #128;
     width: 17%;
     height: 85.85%;
-
 }
+
+.side-bar a{
+	color: white;
+	text-decoration: none;
+	font-size: 1.2rem;
+}
+
 .mini-calendar{
     position: relative;
     background-color: white;
@@ -82,3 +88,20 @@ nav a:hover:not(.login-btn) {
 .invisible{
     display: none;
 }   
+
+.block {
+	position: sticky;
+	background: #47a;
+	border-bottom: 0.2rem solid #112288;
+	border-right:0.2rem solid #128;
+
+	padding: 2rem 3rem;       /* Aumenta altura e espaçamento */
+	display: flex;
+	gap: 3rem;                /* Mais espaço entre itens */
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2rem;        /* Torna o texto maior */
+	width: 10.75%;
+	top:0;
+	height: 6.45rem;
+}

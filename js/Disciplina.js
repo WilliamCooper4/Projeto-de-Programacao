@@ -1,5 +1,6 @@
-sidebar = document.getElementById('sidebar');
-testbtn = document.getElementById('testbtn');
+const sidebar = document.getElementById('sidebar');
+const sidebar0 = document.getElementById('sidebar0');
+const testbtn = document.getElementById('testbtn');
 const UnitName = document.getElementById('name');
 const desc = document.getElementById('desc');
 const execise = document.getElementById('execise');
@@ -8,11 +9,13 @@ var isSidebarVisible = true;
 testbtn.addEventListener('click', function() {
     if (isSidebarVisible===false){
         sidebar.classList.remove("invisible");
+        sidebar0.classList.remove("invisible");
         console.log("change to visible");
         isSidebarVisible=true;
     }
     else if (isSidebarVisible===true){
         sidebar.classList.add("invisible");
+        sidebar0.classList.add("invisible");
         console.log("change to invisible");
         isSidebarVisible=false;
     }
