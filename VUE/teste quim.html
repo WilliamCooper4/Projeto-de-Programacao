@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Exemplo com Pinia</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.22/vue.global.prod.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pinia/3.0.1/pinia.iife.prod.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<p>Count: {{ store.count }}</p>
+		<button @click="store.increment">Increment</button>
+	</div>
+
+	<script>
+		const { createApp } = Vue;
+		const { createPinia, defineStore } = Pinia;
+
+		const pinia = createPinia();
+
+		// Definindo a store
+		const useStore = defineStore('main', {
+			state: () => ({ count: 0 }),
+			actions: {
+				increment() {
+					this.count++;
+				},
+			},
+		});
+
+		// Criando o aplicativo
+		const app = createApp({
+			setup() {
+				const store = useStore(); // Chamada da store
+				return { store }; // Retornando a store diretamente
+			},
+			template: `<div>
+							<p>Count: {{ store.count }}</p>
+							<button @click="store.increment">Increment</button>
+						</div>`
+		});
+
+		app.use(pinia);
+		app.mount('#app');
+	</script>
+</body>
+
+</html>
