@@ -8,6 +8,7 @@ body{
 
 .page-content{
     position: relative;
+    top: -8rem;
     left: 20%;
     width: 75%;
     color:black
