@@ -4,18 +4,14 @@ import { useUserStore } from "../stores/userStore";
 const store = useUserStore();
 
 // criar um utilizador inicial
-function criar() {
+function criar(nome,pass) {
 	store.createUser({
 		id: 123,
-		name: "user",
-		password: "password",
-		roles: ["admin"],
+		name: nome,
+		password: pass,
+		role: "user",
 		profilepic: "image",
-		disciplinas: [
-			"Computação Gráfica",
-			"Programação Web",
-			"Bases de Dados"
-		],
+		disciplinas: [],
 		lvl: 1,
 		exp: 0,
 		streak: 0,
