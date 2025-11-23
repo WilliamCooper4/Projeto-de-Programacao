@@ -12,3 +12,8 @@ app.use(createPinia())
 app.use(router)
 
 app.mount('#app')
+
+// carregar o user ao iniciar
+import { useUserStore } from "./stores/useUserStore";
+const userStore = useUserStore();
+userStore.loadFromLocalStorage();
