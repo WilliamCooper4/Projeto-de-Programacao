@@ -1,13 +1,13 @@
 body {
 	margin: 0;
 	font-family: "Maiandra GD",Arial, sans-serif;
-	background: #bcf;
+	background: #bbccff;
 }
 
 /* Barra de navegação */
 nav {
 	background: #47a;
-	border-bottom: 0.2rem solid #128;
+	border-bottom: 0.2rem solid #112288;
 	padding: 2rem 3rem;       /* Aumenta altura e espaçamento */
 	display: flex;
 	gap: 3rem;                /* Mais espaço entre itens */
@@ -26,7 +26,7 @@ nav a {
 /* Botão de Login */
 nav a.login-btn {
 	background: #fff;
-	color: #47a;
+	color: #4477aa;
 	padding: 8px 16px;
 	border-radius: 6px;
 	font-weight: bold;
@@ -54,11 +54,11 @@ nav a:hover:not(.login-btn) {
 
 .side-calendar-container{
     position: absolute;
-    top:14.15%;
+    top:  6.45rem;
     margin-top: auto;
     background-color: #47a;
     border-right:0.2rem solid #128;
-    width: 250px;
+    width: 17%;
     height: 85.85%;
 
 }

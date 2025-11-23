@@ -5,3 +5,10 @@ body{
 .black-text{
     color: black;
 }
+
+.page-content{
+    position: relative;
+    left: 20%;
+    width: 75%;
+    color:black
+}
