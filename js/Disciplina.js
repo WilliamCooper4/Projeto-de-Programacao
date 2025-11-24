@@ -1,18 +1,20 @@
-const sidebar = document.getElementById('sidebar');
-const sidebar0 = document.getElementById('sidebar0');
-const testbtn = document.getElementById('testbtn');
-const testbtn2 = document.getElementById('testbtn2');
+
 const UnitName = document.getElementById('name');
 const desc = document.getElementById('desc');
 const execise = document.getElementById('execise');
-const test3 = document.getElementById('test3');
-const test4 = document.getElementById('test4');
 
 var isSidebarVisible = true;
 var Visible=true;
 
 
 //codigo dos butões de teste (retirarar depois)
+const sidebar = document.getElementById('sidebar');
+const sidebar0 = document.getElementById('sidebar0');
+const testbtn = document.getElementById('testbtn');
+const testbtn2 = document.getElementById('testbtn2');
+const test3 = document.getElementById('test3');
+const test4 = document.getElementById('test4');
+
 testbtn.addEventListener('click', function() {
     if (isSidebarVisible===false){
         sidebar.classList.remove("invisible");
