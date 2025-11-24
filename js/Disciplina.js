@@ -10,6 +10,9 @@ const test4 = document.getElementById('test4');
 
 var isSidebarVisible = true;
 var Visible=true;
+
+
+//codigo dos butões de teste (retirarar depois)
 testbtn.addEventListener('click', function() {
     if (isSidebarVisible===false){
         sidebar.classList.remove("invisible");
@@ -40,7 +43,7 @@ testbtn2.addEventListener("click", function() {
 });
 
 
-// Pegar dados da disciplina~
+// Pegar dados da disciplina (dados para testar integração, fazer os dados ser dependentes do que estiver no mockserver)
 
 UnitName.textContent = "Matemática Discreta";
 desc.textContent = "Estudo dos conceitos fundamentais da matemática que são aplicados na ciência da computação, incluindo lógica, teoria dos conjuntos, relações, funções, grafos e combinatória.";
