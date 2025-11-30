@@ -1,0 +1,5 @@
+codigo a correr:
+
+cd "C:\Users\Maquitec\Desktop\Projeto-de-Programacao\projeto programação"      
+npm install
+npm run dev
