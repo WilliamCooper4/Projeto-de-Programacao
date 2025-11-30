@@ -1,5 +1,6 @@
+npm install
+
 codigo a correr:
 
-cd "C:\Users\Maquitec\Desktop\Projeto-de-Programacao\projeto programação"      
-npm install
+cd "C:\Users\guilh\OneDrive\Documentos\Projeto-de-Programacao\projeto programação"
 npm run dev
