@@ -1,17 +1,4 @@
-window.addEventListener('scroll', function () {
-  const navbar = document.querySelector("#navbar nav");
-  const loginBtn = document.querySelector(".login-btn");
 
-  if (window.scrollY > 100) {
-    navbar.classList.add("navbar-branco");
-    loginBtn.classList.add("text-danger");
-    loginBtn.classList.remove("text-white");
-  } else {
-    navbar.classList.remove("navbar-branco");
-    loginBtn.classList.remove("text-danger");
-    loginBtn.classList.add("text-white");
-  }
-});
 
 function showRegister() {
   document.getElementById('loginScreen').classList.add('d-none');

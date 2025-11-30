@@ -1,85 +1,19 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
-  <nav>
-		<a href="#">Princípio</a>
-		<a href="/htm/disciplina.htm">Disciplinas</a>
-		<a href="#">Calendário</a>
-		<!-- updated attributes to use Bootstrap's modal trigger -->
-		<a href="#" class="login-btn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
-	</nav>
-
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content border-danger border-2 rounded-4">
-
-				<!-- Ecrã 1: Login -->
-				<div id="loginScreen" class="p-4">
-					<div class="text-center mb-4">
-						<a>TRACKER</a>
-					</div>
-					<div class="mb-2">
-						<input type="text" id="username" class="form-control text-center rounded-pill"
-							placeholder="Nome de Utilizador">
-					</div>
-					<div class="mb-3">
-						<input type="password" id="password" class="form-control text-center rounded-pill"
-							placeholder="Palavra-passe">
-					</div>
-					<button id="btnLogin" class="btn btn-primary w-100 rounded-pill mb-2">Login</button>
-					<button class="btn btn-primary w-100 rounded-pill mb-3" onclick="showRegister()">Criar
-						conta</button>
-				</div>
-
-      <!-- Ecrã 2: Registo -->
-      <div id="registerScreen" class="p-4 d-none">
-        <button class="btn btn-link p-0 mb-3" onclick="showLogin()">← Voltar</button>
-        <div class="text-center mb-4">
-          <a>TRACKER</a>
-        </div>
-
-					<div class="mb-2"><input type="text" class="form-control text-center rounded-pill"
-							placeholder="Nome de Utilizador"></div>
-					<div class="mb-2"><input type="email" class="form-control text-center rounded-pill"
-							placeholder="E-mail"></div>
-					<div class="mb-2"><input type="email" class="form-control text-center rounded-pill"
-							placeholder="Confirmar E-mail"></div>
-					<div class="mb-2"><input type="password" class="form-control text-center rounded-pill"
-							placeholder="Palavra-passe"></div>
-					<div class="mb-3"><input type="password" class="form-control text-center rounded-pill"
-							placeholder="Confirmar Palavra-passe"></div>
-
-					<div class="form-check text-start mb-2 small">
-						<input class="form-check-input" type="checkbox" id="terms">
-						<label class="form-check-label" for="terms">
-							Ao criar conta, confirma que tem 18 anos ou mais e aceita os <a href="#">Termos</a> e a <a
-								href="#">Política</a>.
-						</label>
-					</div>
-
-					<button class="btn btn-primary w-100 rounded-pill">Criar conta</button>
-				</div>
-
-			</div>
-		</div>
-	</div>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <router-view/>
 </template>
 
 <style scoped>
+
+
 		/* limit width of this specific modal to make it appear smaller */
 		#loginModal .modal-dialog {
 			max-width: 420px;
 			margin: 1.75rem auto;
 		}
 
-    body {
+body {
 	margin: 0;
 	font-family: "Maiandra GD",Arial, sans-serif;
 	background: #bbccff;
@@ -186,4 +120,6 @@ nav a:hover:not(.login-btn) {
 	top:0;
 	height: 6.45rem;
 }
+
+
 </style>
