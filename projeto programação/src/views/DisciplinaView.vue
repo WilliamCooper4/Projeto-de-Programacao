@@ -5,7 +5,7 @@ import { onMounted } from 'vue'
     const LogBTN = document.getElementById("Log")
     const loginScreen= document.getElementById("logbox")
         // deteta se o click é dentrovda da logbox
-        window.addEventListener('click', function(e){   
+        window.addEventListener('click', function(e){
             if (document.getElementById('logbox').contains(e.target)){
                 // Clicked in box
                 console.log("inside")
@@ -20,7 +20,7 @@ import { onMounted } from 'vue'
         console.log("login")
         loginScreen.classList.toggle("invisible")
         })
-    
+
 
     })
 
@@ -73,7 +73,7 @@ import { onMounted } from 'vue'
         <p id="desc" >Descrição da disciplina</p>
         <p class="invisible" id="test3"><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>  <br> <br> <br> <br> <br> </p>
         <h2 id="ex">Exercícios</h2>
-        <p id="execise"></p>
+        <p id="exercise"></p>
         <p class="invisible" id="test4"><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
         <h2 id="mat">Material de Estudo</h2>
         <ul>
