@@ -17,7 +17,7 @@ import "../assets/Disciplina.css"
         <h1 id="name">Disciplina</h1>
         <p id="desc" >Descrição da disciplina</p>
         <p class="invisible" id="test3"><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>  <br> <br> <br> <br> <br> </p>
-        <h2 id="ex">Exercicios</h2>
+        <h2 id="ex">Exercícios</h2>
         <p id="execise"></p>
         <p class="invisible" id="test4"><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
         <h2 id="mat">Material de Estudo</h2>
