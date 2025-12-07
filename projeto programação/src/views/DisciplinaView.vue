@@ -11,14 +11,15 @@ import { onMounted } from 'vue'
                 console.log("inside")
             } else{
                 console.log("outside")
-                loginScreen.classList.toggle("invisible")
+                loginScreen.classList.add("invisible")
             }
             });
 
 
     LogBTN.addEventListener("click", function() {
         console.log("login")
-        loginScreen.classList.toggle("invisible")
+
+        loginScreen.classList.remove("invisible")
         })
 
 
@@ -55,6 +56,7 @@ import { onMounted } from 'vue'
 
 
 
+
 </script>
 
 <template>
@@ -65,7 +67,7 @@ import { onMounted } from 'vue'
 		<router-link to="/Dis">Disciplinas</router-link>
 		<a href="#">Calendário</a>
 		<!-- updated attributes to use Bootstrap's modal trigger -->
-		<button id="Log">Login</button>
+		<button class="login-btn" id="Log">Login</button>
 	</nav>
     <div class="block" id="sidebar0"><p>SIDE BAR</p></div>
     <div class="page-content">

@@ -26,9 +26,9 @@ nav a {
 }
 
 /* Botão de Login */
-nav a.login-btn {
-	background: #fff;
-	color: #4477aa;
+.login-btn {
+	background: transparent;
+	color: #ffffff;
 	padding: 8px 16px;
 	border-radius: 6px;
 	font-weight: bold;
@@ -115,4 +115,12 @@ nav a:hover:not(.login-btn) {
 	position: fixed;
 	left: 25%;
 	top:25%;
+}
+
+.nav button{
+	background: #fff;
+	color: #4477aa;
+	padding: 8px 16px;
+	border-radius: 6px;
+	font-weight: bold;
 }
