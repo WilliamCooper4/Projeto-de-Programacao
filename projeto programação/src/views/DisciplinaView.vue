@@ -1,4 +1,5 @@
 <script setup>
+import "../assets/Disciplina.css"
 </script>
 
 <template>
@@ -48,3 +49,6 @@
 
   </main>
 </template>
+
+<style>
+</style>

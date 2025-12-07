@@ -1,6 +1,35 @@
 <script setup>
 console.log("sup")
 
+import { onMounted } from 'vue'
+
+// colocar todos os elementos de DOM dentro de onMounted
+onMounted(() => {
+  const LogBTN = document.getElementById("Log")
+  const loginScreen= document.getElementById("logbox")
+  LogBTN.addEventListener("click", function() {
+    console.log("login")
+	loginScreen.classList.toggle("invisible")
+  })
+  
+})
+
+window.addEventListener('scroll', function () {
+  const navbar = document.querySelector("#navbar nav");
+  const loginBtn = document.querySelector(".login-btn");
+
+  if (window.scrollY > 100) {
+    navbar.classList.add("navbar-branco");
+    loginBtn.classList.add("text-danger");
+    loginBtn.classList.remove("text-white");
+  } else {
+    navbar.classList.remove("navbar-branco");
+    loginBtn.classList.remove("text-danger");
+    loginBtn.classList.add("text-white");
+  }
+});
+
+
 function showRegister() {
   document.getElementById('loginScreen').classList.add('d-none');
   document.getElementById('registerScreen').classList.remove('d-none');
@@ -8,11 +37,11 @@ function showRegister() {
 
 window.showRegister = showRegister
 function showLogin() {
+	console.log("click")
   document.getElementById('registerScreen').classList.add('d-none');
   document.getElementById('loginScreen').classList.remove('d-none');
 }
 window.showLogin = showLogin;
-
 
 </script>
 
@@ -22,17 +51,17 @@ window.showLogin = showLogin;
 		<router-link to="/Dis">Disciplinas</router-link>
 		<a href="#">Calendário</a>
 		<!-- updated attributes to use Bootstrap's modal trigger -->
-		<a href="#" class="login-btn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+		<button id="Log">Login</button>
 	</nav>
 
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+  <div class="login-box , invisible" id="logbox">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content border-danger border-2 rounded-4">
 
 				<!-- Ecrã 1: Login -->
 				<div id="loginScreen" class="p-4">
 					<div class="text-center mb-4">
-						<a>TRACKER</a>
+						<a color="red">TRACKER</a>
 					</div>
 					<div class="mb-2">
 						<input type="text" id="username" class="form-control text-center rounded-pill"
@@ -196,5 +225,15 @@ nav a:hover:not(.login-btn) {
 	height: 6.45rem;
 }
 
+.login-box{
+	width: 50%;
+	background-color: #FFF;
+	position: fixed;
+	left: 25%;
+	top:25%;
+}
 
+.invisible{
+	display: none;
+}
 </style>
