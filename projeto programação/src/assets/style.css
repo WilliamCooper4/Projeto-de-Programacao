@@ -27,8 +27,8 @@ nav a {
 
 /* Botão de Login */
 .login-btn {
-	background: transparent;
-	color: #ffffff;
+	background: #1d3f61;
+	color: #abf8f0;
 	padding: 8px 16px;
 	border-radius: 6px;
 	font-weight: bold;
