@@ -61,7 +61,7 @@ import { onMounted } from 'vue'
   <main>
     	<!-- barra superior -->
 	<nav>
-		<a href="#">Princípio</a>
+		<router-link to="/">Princípio</router-link>
 		<router-link to="/Dis">Disciplinas</router-link>
 		<a href="#">Calendário</a>
 		<!-- updated attributes to use Bootstrap's modal trigger -->
