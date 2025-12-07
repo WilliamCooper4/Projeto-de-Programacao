@@ -110,6 +110,7 @@ nav a:hover:not(.login-btn) {
 
 .login-box{
 	width: 50%;
+	color: #112288;
 	background-color: #FFF;
 	position: fixed;
 	left: 25%;
