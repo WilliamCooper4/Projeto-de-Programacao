@@ -67,20 +67,19 @@ import { onMounted } from 'vue'
 		<!-- updated attributes to use Bootstrap's modal trigger -->
 		<button id="Log">Login</button>
 	</nav>
-
     <div class="block" id="sidebar0"><p>SIDE BAR</p></div>
     <div class="page-content">
         <h1 id="name">Disciplina</h1>
-        <p id="desc" >descrição da disciplina</p>
+        <p id="desc" >Descrição da disciplina</p>
         <p class="invisible" id="test3"><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>  <br> <br> <br> <br> <br> </p>
         <h2 id="ex">Exercicios</h2>
         <p id="execise"></p>
         <p class="invisible" id="test4"><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
         <h2 id="mat">Material de Estudo</h2>
         <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
         </ul>
     </div>
     <div class="login-box , invisible" id="logbox">
@@ -146,12 +145,12 @@ import { onMounted } from 'vue'
 
             <p class="black-text"> <br> <br>Placeholder calendar</p>
         </div>-->
-        
+
         <div class="calendar-filter">
             <h3>Conteúdo</h3>
             <ul>
-                <li><a href="#name">descrição</a></li>
-                <li><a href="#ex">Exercicios</a></li>
+                <li><a href="#name">Descrição</a></li>
+                <li><a href="#ex">Exercícios</a></li>
                 <li><a href="#mat">Materiais</a></li>
             </ul>
         </div>
