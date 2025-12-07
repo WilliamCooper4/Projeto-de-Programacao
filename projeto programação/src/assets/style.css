@@ -61,7 +61,7 @@ nav a:hover:not(.login-btn) {
     background-color: #47a;
     border-right:0.2rem solid #128;
     width: 17%;
-    height: 85.85%;
+    height: 83.9%;
 }
 
 .side-bar a{
@@ -80,7 +80,7 @@ nav a:hover:not(.login-btn) {
 
 .calendar-filter{
     position: relative;
-    
+
     height: 100px;
     width: 210px;
     left: 20px;
@@ -89,7 +89,7 @@ nav a:hover:not(.login-btn) {
 
 .invisible{
     display: none;
-}   
+}
 
 .block {
 	position: sticky;
@@ -106,4 +106,13 @@ nav a:hover:not(.login-btn) {
 	width: 10.75%;
 	top:0;
 	height: 6.45rem;
+}
+
+.login-box{
+	width: 50%;
+	color: #112288;
+	background-color: #FFF;
+	position: fixed;
+	left: 25%;
+	top:25%;
 }
