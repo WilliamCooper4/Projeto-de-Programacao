@@ -1,14 +1,11 @@
 <script setup>
-import { onMounted } from 'vue'
+import { ref } from 'vue'
 
-onMounted(() => {
-  const loginScreen = document.getElementById("loginScreen");~
+const isLoginVisible = ref(false)
 
-  function showLogin() {
-	loginScreen.classList.toggle("invisible");
-  }
-
-});
+function toggleLogin() {
+  isLoginVisible.value = !isLoginVisible.value
+}
 </script>
 
 <template>
@@ -17,11 +14,11 @@ onMounted(() => {
 		<router-link to="/Dis">Disciplinas</router-link>
 		<a href="#">Calendário</a>
 		<!-- updated attributes to use Bootstrap's modal trigger -->
-		<p to="/Login" v-on:click="showLogin" class="login-btn" id="Log">Login</p>
+		<p class="login-btn" id="Log" @click="toggleLogin">Login</p>
 	</nav>
-	<div class="invisible" id="loginScreen">
-		<div class="BlackBack" id="Black"></div>
-		<div id="loginScreen" class="p-4">
+	<div v-if="isLoginVisible" id="loginScreen">
+		<div class="BlackBack" id="Black" @click="toggleLogin"></div>
+		<div id="loginForm" class="p-4">
 					<div class="text-center mb-4">
 						<a color="red">TRACKER</a>
 					</div>
@@ -52,7 +49,6 @@ body {
 	margin: 0;
 	font-family: "Maiandra GD",Arial, sans-serif;
 	background: #bbccff;
-	z-index: 1;
 }
 
 /* Barra de navegação */
@@ -166,7 +162,7 @@ nav a:hover:not(.login-btn) {
 	background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
 	z-index: 999;
 	}
-#loginScreen {
+#loginForm {
 	position: fixed;
 	z-index: 1000;
 	left: 50%;
