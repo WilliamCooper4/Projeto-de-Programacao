@@ -80,13 +80,7 @@ window.showLogin = showLogin;
 </script>
 
 <template>
-  <nav>
-		<a href="#">Princípio</a>
-		<router-link to="/Dis">Disciplinas</router-link>
-		<a href="#">Calendário</a>
-		<!-- updated attributes to use Bootstrap's modal trigger -->
-		<button class="login-btn" id="Log">Login</button>
-	</nav>
+	<H1>THIS IS HOME</H1>
 
   <div class="login-box , invisible" id="logbox">
 		<div class="modal-dialog modal-dialog-centered">

@@ -16,6 +16,11 @@ const router = createRouter({
       path: "/Dis",
       name: "Disciplina",
       component: DisciplinaView
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: () => import('@/views/LoginView.vue')
     }
   ],
 })

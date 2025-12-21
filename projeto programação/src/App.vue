@@ -1,6 +1,41 @@
-<script setup></script>
+<script setup>
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  const loginScreen = document.getElementById("loginScreen");~
+
+  function showLogin() {
+	loginScreen.classList.toggle("invisible");
+  }
+
+});
+</script>
 
 <template>
+	  <nav>
+		<router-link to="/">Princípio</router-link>
+		<router-link to="/Dis">Disciplinas</router-link>
+		<a href="#">Calendário</a>
+		<!-- updated attributes to use Bootstrap's modal trigger -->
+		<p to="/Login" v-on:click="showLogin" class="login-btn" id="Log">Login</p>
+	</nav>
+	<div class="invisible" id="loginScreen">
+		<div class="BlackBack" id="Black"></div>
+		<div id="loginScreen" class="p-4">
+					<div class="text-center mb-4">
+						<a color="red">TRACKER</a>
+					</div>
+					<div class="mb-2">
+						<input type="text" id="username" class="form-control text-center rounded-pill" placeholder="Nome de Utilizador">
+					</div>
+					<div class="mb-3">
+						<input type="password" id="password" class="form-control text-center rounded-pill" placeholder="Palavra-passe">
+					</div>
+			<button id="btnLogin" class="btn btn-primary w-100 rounded-pill mb-2">Login</button>
+			<button class="btn btn-primary w-100 rounded-pill mb-3" onclick="showRegister()">CriarConta</button>
+		</div>
+	</div>
+	
   <router-view/>
 </template>
 
@@ -17,6 +52,7 @@ body {
 	margin: 0;
 	font-family: "Maiandra GD",Arial, sans-serif;
 	background: #bbccff;
+	z-index: 1;
 }
 
 /* Barra de navegação */
@@ -120,6 +156,24 @@ nav a:hover:not(.login-btn) {
 	top:0;
 	height: 6.45rem;
 }
+
+.BlackBack {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+	z-index: 999;
+	}
+#loginScreen {
+	position: fixed;
+	z-index: 1000;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	}
 
 
 </style>
