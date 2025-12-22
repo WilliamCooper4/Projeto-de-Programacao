@@ -32,10 +32,10 @@ function logout() {
 <template>
 	<nav>
 		<router-link to="/">Princípio</router-link>
-		<router-link to="/Dis">Disciplinas</router-link>
+		<router-link v-if="auth.isLoggedIn" to="/Dis">Disciplinas</router-link>
 		<a href="#">Calendário</a>
-		<p v-if="!auth.isLoggedIn" class="login-btn" id="Log" @click="toggleLogin" > Login </p>
-		<p v-else class="login-btn" id="Log" @click="logout" > Logout </p>
+		<button v-if="!auth.isLoggedIn" class="login-btn" id="Log" @click="toggleLogin" > Login </button>
+		<button v-else class="login-btn" id="Log" @click="logout" > Logout </button>
 
 		<span v-if="auth.isLoggedIn" class="me-3">
 			Olá, {{ auth.user.name }}

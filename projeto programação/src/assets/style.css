@@ -29,6 +29,7 @@ nav a {
 .login-btn {
 	background: #1d3f61;
 	color: #abf8f0;
+	border: none;
 	padding: 8px 16px;
 	border-radius: 6px;
 	font-weight: bold;
