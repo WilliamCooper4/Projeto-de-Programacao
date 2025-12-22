@@ -37,6 +37,9 @@ function logout() {
 		<p v-if="!auth.isLoggedIn" class="login-btn" id="Log" @click="toggleLogin" > Login </p>
 		<p v-else class="login-btn" id="Log" @click="logout" > Logout </p>
 
+		<span v-if="auth.isLoggedIn" class="me-3">
+			Olá, {{ auth.user.name }}
+		</span>
 	</nav>
 
 	<div v-if="isLoginVisible" id="loginScreen">

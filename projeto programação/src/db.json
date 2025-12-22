@@ -2,7 +2,7 @@
 	"users": [
 		{
 			"id": 1,
-			"name": "user",
+			"name": "administrador",
 			"email": "myemail@gmail.com",
 			"password": "password",
 			"role": "admin",
@@ -25,8 +25,8 @@
 		},
 		{
 			"id": 2,
-			"name": "user",
-			"email":"anotheremail@emailer.org",
+			"name": "utilizador",
+			"email":"123@esmad.ipp.pt",
 			"password": "1234",
 			"role": "user",
 			"profilepic": "image",
