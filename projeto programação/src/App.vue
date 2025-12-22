@@ -17,11 +17,15 @@ function toggleLogin() {
 async function doLogin() {
 	try {
 		await auth.login(email.value, password.value)
-		console.log('LOGIN OK:', auth.user)
+		//console.log('LOGIN OK:', auth.user)
 		toggleLogin()
 	} catch (err) {
 		error.value = err.message
 	}
+}
+
+function logout() {
+	auth.logout()
 }
 </script>
 
@@ -30,7 +34,9 @@ async function doLogin() {
 		<router-link to="/">Princípio</router-link>
 		<router-link to="/Dis">Disciplinas</router-link>
 		<a href="#">Calendário</a>
-		<p class="login-btn" id="Log" @click="toggleLogin">Login</p>
+		<p v-if="!auth.isLoggedIn" class="login-btn" id="Log" @click="toggleLogin" > Login </p>
+		<p v-else class="login-btn" id="Log" @click="logout" > Logout </p>
+
 	</nav>
 
 	<div v-if="isLoginVisible" id="loginScreen">
