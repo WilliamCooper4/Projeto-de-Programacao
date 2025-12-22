@@ -1,67 +1,118 @@
 {
-	"users": [
-		{
-			"id": 1,
-			"name": "administrador",
-			"email": "myemail@gmail.com",
-			"password": "password",
-			"role": "admin",
-			"profilepic": "image",
-			"classes": [
-				"Computação Gráfica",
-				"Programação Web",
-				"Bases de Dados"
-			],
-			"lvl": 1,
-			"exp": 0,
-			"streak": 0,
-			"lembretes": [
-			],
-
-			"eventosCalendario": [
-				{ "id": 1, "titulo": "Aula de Química", "data": 2763310419 },
-				{ "id": 2, "titulo": "Apresentação", "data": 2767316419 }
-			]
-		},
-		{
-			"id": 2,
-			"name": "utilizador",
-			"email":"123@esmad.ipp.pt",
-			"password": "1234",
-			"role": "user",
-			"profilepic": "image",
-			"classes": [
-				"Sistemas Computacionais",
-				"Programação Web",
-				"Inteligência Artificial"
-			],
-			"lvl": 1,
-			"exp": 0,
-			"streak": 0,
-			"lembretes": [
-				{ "id": 1, "texto": "Estudar para o teste de Matemática", "data": 1763310419 },
-				{ "id": 2, "texto": "Enviar trabalho de Português", "data": 1763297999 }
-			],
-
-			"eventosCalendario": [
-				{ "id": 1, "titulo": "Apresentação", "data": 2767316419 }
-			]
-		}
-	],
-	"classes": [
-		{
-			"id":1,
-			"name":"Programação Web",
-			"description":"Lorem Ipsum dolor sit amet, bla bla bla et cetera",
-			"exercises": [
-				{ "id" : 1, "nome":"exercicio 1", "link":"https://moodle.esmad.ipp.pt/" },
-				{ "id" : 2, "nome":"exercicio 2", "link":"https://domus.ipp.pt/home/" }
-			],
-			"resources": [
-				{ "id" : 2, "type": "doc", "nome":"Introdução a Pinia", "link":"https://moodle.esmad.ipp.pt/mod/resource/view.php?id=4691" },
-				{ "id" : 1, "type": "doc", "nome":"Vue: Acesso a APIs", "link":"https://moodle.esmad.ipp.pt/mod/resource/view.php?id=5442" },
-				{ "id" : 3, "type": "video", "nome":"Passo-a-passo: FETCH a mock server", "link":"https://youtu.be/bleEztMsSDk" }
-			]
-		}
-	]
+  "users": [
+    {
+      "id": 1,
+      "email": "myemail@gmail.com",
+      "password": "password",
+      "role": "admin",
+      "profilepic": "image",
+      "classes": [
+        "Computação Gráfica",
+        "Programação Web",
+        "Bases de Dados"
+      ],
+      "lvl": 1,
+      "exp": 0,
+      "streak": 0,
+      "lembretes": [],
+      "eventosCalendario": [
+        {
+          "id": 1,
+          "titulo": "Aula de Química",
+          "data": 2763310419
+        },
+        {
+          "id": 2,
+          "titulo": "Apresentação",
+          "data": 2767316419
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "email": "123@esmad.ipp.pt",
+      "password": "1234",
+      "role": "user",
+      "profilepic": "image",
+      "classes": [
+        "Sistemas Computacionais",
+        "Programação Web",
+        "Inteligência Artificial"
+      ],
+      "lvl": 1,
+      "exp": 0,
+      "streak": 0,
+      "lembretes": [
+        {
+          "id": 1,
+          "texto": "Estudar para o teste de Matemática",
+          "data": 1763310419
+        },
+        {
+          "id": 2,
+          "texto": "Enviar trabalho de Português",
+          "data": 1763297999
+        }
+      ],
+      "eventosCalendario": [
+        {
+          "id": 1,
+          "titulo": "Apresentação",
+          "data": 2767316419
+        }
+      ]
+    },
+    {
+      "email": "t",
+      "password": "123",
+      "role": "user",
+      "profilepic": "image",
+      "classes": [],
+      "lvl": 1,
+      "exp": 0,
+      "streak": 0,
+      "lembretes": [],
+      "eventosCalendario": [],
+      "id": 3
+    }
+  ],
+  "classes": [
+    {
+      "id": 1,
+      "name": "Programação Web",
+      "description": "Lorem Ipsum dolor sit amet, bla bla bla et cetera",
+      "exercises": [
+        {
+          "id": 1,
+          "nome": "exercicio 1",
+          "link": "https://moodle.esmad.ipp.pt/"
+        },
+        {
+          "id": 2,
+          "nome": "exercicio 2",
+          "link": "https://domus.ipp.pt/home/"
+        }
+      ],
+      "resources": [
+        {
+          "id": 2,
+          "type": "doc",
+          "nome": "Introdução a Pinia",
+          "link": "https://moodle.esmad.ipp.pt/mod/resource/view.php?id=4691"
+        },
+        {
+          "id": 1,
+          "type": "doc",
+          "nome": "Vue: Acesso a APIs",
+          "link": "https://moodle.esmad.ipp.pt/mod/resource/view.php?id=5442"
+        },
+        {
+          "id": 3,
+          "type": "video",
+          "nome": "Passo-a-passo: FETCH a mock server",
+          "link": "https://youtu.be/bleEztMsSDk"
+        }
+      ]
+    }
+  ]
 }
