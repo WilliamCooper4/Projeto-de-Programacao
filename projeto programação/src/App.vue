@@ -40,10 +40,10 @@ function toggleLogin() {
 						<input type="password" id="password" class="form-control text-center rounded-pill" placeholder="Palavra-passe">
 					</div>
 			<button id="btnLogin" class="btn btn-primary w-100 rounded-pill mb-2">Login</button>
-			<button class="btn btn-primary w-100 rounded-pill mb-3" onclick="showRegister()">CriarConta</button>
+			<button class="btn btn-primary w-100 rounded-pill mb-3" onclick="showRegister()">Criar Conta</button>
 		</div>
 	</div>
-	
+
   <router-view/>
 </template>
 
@@ -136,7 +136,7 @@ nav a:hover:not(.login-btn) {
 
 .calendar-filter{
     position: relative;
-    
+
     height: 100px;
     width: 210px;
     left: 20px;
@@ -145,7 +145,7 @@ nav a:hover:not(.login-btn) {
 
 .invisible{
     display: none;
-}   
+}
 
 .block {
 	position: sticky;
