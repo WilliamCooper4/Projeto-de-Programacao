@@ -1,12 +1,16 @@
 <script setup>
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
+import { useuserlistStore } from './stores/userlist'
 
+var showRegister = ref(false)
 const auth = useAuthStore()
-
+const userlist = useuserlistStore()
 const isLoginVisible = ref(false)
 const email = ref('')
+const Cemail = ref('')
 const password = ref('')
+const Cpassword = ref('')
 const error = ref('')
 
 function toggleLogin() {
@@ -27,6 +31,40 @@ async function doLogin() {
 function logout() {
 	auth.logout()
 }
+
+function adduser() {
+	var fail = false
+	try {
+		if(!email.value || !password.value || !Cemail.value || !Cpassword.value){ 
+			throw new Error('Por favor, preencha todos os campos.')
+		}
+		else if(password.value != Cpassword.value){
+			throw new Error('As senhas não coincidem.')
+		}
+		
+		else if(email.value != Cemail.value){
+			throw new Error('Os emails não coincidem.')
+		}
+		
+		for(let i=0; i<userlist.users.length; i++){
+			if(email.value==userlist.users[i].email){
+				throw new Error('Usuário já existe.')
+			}
+		}
+	
+	
+	}	
+	catch (err) {
+		fail = true
+		error.value = err.message
+	}
+	if(!fail){
+		console.log('USER ADDED')
+		userlist.addUser(email.value, password.value)
+		toggleLogin()
+	}
+}
+
 </script>
 
 <template>
@@ -52,14 +90,22 @@ function logout() {
 			<div class="mb-2">
 				<input v-model="email" type="text" id="username" class="form-control text-center rounded-pill" placeholder="Email"/>
 			</div>
+			<div class="mb-2">
+				<input v-if="showRegister" v-model="Cemail" type="text" id="CUserName" class="form-control text-center rounded-pill" placeholder="Confirmar Email"/>
+			</div>
 			<div class="mb-3">
 				<input v-model="password" type="password" class="form-control text-center rounded-pill" placeholder="Senha"/>
+			</div>
+			<div class="mb-3">
+				<input v-if="showRegister" v-model="Cpassword" type="password" id="Cp" class="form-control text-center rounded-pill" placeholder="Confirmar Senha"/>
 			</div>
 
 			<p v-if="error" class="text-danger text-center">{{ error }}</p>
 
-			<button class="btn btn-primary w-100 rounded-pill mb-3" @click="doLogin">Login</button>
-			<button class="btn btn-primary w-100 rounded-pill mb-3" @click="showRegister = true" >Criar Conta</button>
+			<button v-if="!showRegister" class="btn btn-primary w-100 rounded-pill mb-3" @click="doLogin">Login</button>
+			<button v-if="!showRegister" class="btn btn-primary w-100 rounded-pill mb-3" @click="showRegister = true" >Criar Conta</button>
+			<button v-if="showRegister" class="btn btn-primary w-100 rounded-pill mb-3" @click="adduser">Criar Conta</button>
+			<button v-if="showRegister" class="btn btn-primary w-100 rounded-pill mb-3" @click="showRegister = false" >return</button>
 		</div>
 	</div>
 
