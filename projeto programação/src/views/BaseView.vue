@@ -9,10 +9,10 @@ import { onMounted } from 'vue'
 onMounted(() => {
   const LogBTN = document.getElementById("Log")
   const loginScreen= document.getElementById("logbox")
- 
+
 	function addLog(){
 		LogBTN.removeEventListener("click");
-		window.addEventListener('click', function(e){   
+		window.addEventListener('click', function(e){
 			if (document.getElementById('logbox').contains(e.target)){
 				// Clicked in box
 				console.log("inside")
@@ -27,8 +27,8 @@ onMounted(() => {
 				})
 			}
 			});
-	}	
-		/*window.addEventListener('click', function(e){   
+	}
+		/*window.addEventListener('click', function(e){
 		if (document.getElementById('logbox').contains(e.target)){
 			// Clicked in box
 			console.log("inside")
@@ -44,7 +44,7 @@ onMounted(() => {
 			addLog()
 			})
 
-  
+
 
 })
 
@@ -170,7 +170,7 @@ nav a:hover:not(.login-btn) {
 
 .calendar-filter{
     position: relative;
-    
+
     height: 100px;
     width: 210px;
     left: 20px;
@@ -179,7 +179,7 @@ nav a:hover:not(.login-btn) {
 
 .invisible{
     display: none;
-}   
+}
 
 .block {
 	position: sticky;

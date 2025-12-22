@@ -77,7 +77,7 @@ import { onMounted } from 'vue'
             <li><a href="#">Link 3</a></li>
         </ul>
     </div>
-    
+
     <div class="test1"><button  id="testbtn">test</button> <!-- botão de teste para sidebar remover depois -->
     <button id="testbtn2">test2</button></div>
     <div class="minisidebar"></div>
