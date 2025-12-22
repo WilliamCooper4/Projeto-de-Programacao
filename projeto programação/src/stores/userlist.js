@@ -74,8 +74,7 @@ export const useuserlistStore = defineStore('userlist', {
         },
 
         DeleteUser() {
-            this.user = null
-            this.isLoggedIn = false
+            this.users.pop()
         }
     }
 })
