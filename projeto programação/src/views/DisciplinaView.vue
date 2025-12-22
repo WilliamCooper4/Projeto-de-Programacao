@@ -82,8 +82,8 @@ import { onMounted } from 'vue'
     <button id="testbtn2">test2</button></div>
     <div class="minisidebar"></div>
     <div class="side-bar" id="sidebar">
-        <p>side bar</p>
-        <!--<div class="mini-calendar">
+		<!-- <p>side bar</p> -->
+		<!--<div class="mini-calendar">
 
             <p class="black-text"> <br> <br>Placeholder calendar</p>
         </div>-->

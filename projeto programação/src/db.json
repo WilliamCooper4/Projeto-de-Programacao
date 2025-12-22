@@ -52,6 +52,11 @@
 		{
 			"id":1,
 			"name":"Programação Web",
+			"description":"Lorem Ipsum dolor sit amet, bla bla bla et cetera",
+			"exercises": [
+				{ "id" : 1, "nome":"exercicio 1", "link":"https://moodle.esmad.ipp.pt/" },
+				{ "id" : 2, "nome":"exercicio 2", "link":"https://domus.ipp.pt/home/" }
+			],
 			"resources": [
 				{ "id" : 2, "type": "doc", "nome":"Introdução a Pinia", "link":"https://moodle.esmad.ipp.pt/mod/resource/view.php?id=4691" },
 				{ "id" : 1, "type": "doc", "nome":"Vue: Acesso a APIs", "link":"https://moodle.esmad.ipp.pt/mod/resource/view.php?id=5442" },

@@ -46,7 +46,7 @@ function logout() {
 		<div class="BlackBack" id="Black" @click="toggleLogin"></div>
 		<div id="loginForm" class="p-4">
 			<div class="text-center mb-4">
-				<a color="red">TRACKER</a>
+				<p>TRACKER</p>
 			</div>
 
 			<div class="mb-2">
@@ -59,6 +59,7 @@ function logout() {
 			<p v-if="error" class="text-danger text-center">{{ error }}</p>
 
 			<button class="btn btn-primary w-100 rounded-pill mb-3" @click="doLogin">Login</button>
+			<button class="btn btn-primary w-100 rounded-pill mb-3" @click="showRegister = true" >Criar Conta</button>
 		</div>
 	</div>
 
@@ -67,12 +68,19 @@ function logout() {
 
 <style scoped>
 
+.btn-primary {
+	background-color: #112288;
+}
 
-		/* limit width of this specific modal to make it appear smaller */
-		#loginModal .modal-dialog {
-			max-width: 420px;
-			margin: 1.75rem auto;
-		}
+.btn-primary:hover {
+	background-color: #081144;
+}
+
+/* limit width of this specific modal to make it appear smaller */
+#loginModal .modal-dialog {
+	max-width: 420px;
+	margin: 1.75rem auto;
+}
 
 body {
 	margin: 0;
@@ -197,8 +205,9 @@ nav a:hover:not(.login-btn) {
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	background-color: white;
-	}
-
+	background-color: #47a;
+	outline: solid #128;
+	border-radius: 6px;
+}
 
 </style>
