@@ -1,39 +1,59 @@
 <script setup>
 import { ref } from 'vue'
+import { useAuthStore } from '@/stores/auth'
+
+const auth = useAuthStore()
 
 const isLoginVisible = ref(false)
+const email = ref('')
+const password = ref('')
+const error = ref('')
 
 function toggleLogin() {
-  isLoginVisible.value = !isLoginVisible.value
+	isLoginVisible.value = !isLoginVisible.value
+	error.value = ''
+}
+
+async function doLogin() {
+	try {
+		await auth.login(email.value, password.value)
+		console.log('LOGIN OK:', auth.user)
+		toggleLogin()
+	} catch (err) {
+		error.value = err.message
+	}
 }
 </script>
 
 <template>
-	  <nav>
+	<nav>
 		<router-link to="/">Princípio</router-link>
 		<router-link to="/Dis">Disciplinas</router-link>
 		<a href="#">Calendário</a>
-		<!-- updated attributes to use Bootstrap's modal trigger -->
 		<p class="login-btn" id="Log" @click="toggleLogin">Login</p>
 	</nav>
+
 	<div v-if="isLoginVisible" id="loginScreen">
 		<div class="BlackBack" id="Black" @click="toggleLogin"></div>
 		<div id="loginForm" class="p-4">
-					<div class="text-center mb-4">
-						<a color="red">TRACKER</a>
-					</div>
-					<div class="mb-2">
-						<input type="text" id="username" class="form-control text-center rounded-pill" placeholder="Nome de Utilizador">
-					</div>
-					<div class="mb-3">
-						<input type="password" id="password" class="form-control text-center rounded-pill" placeholder="Palavra-passe">
-					</div>
-			<button id="btnLogin" class="btn btn-primary w-100 rounded-pill mb-2">Login</button>
-			<button class="btn btn-primary w-100 rounded-pill mb-3" onclick="showRegister()">Criar Conta</button>
+			<div class="text-center mb-4">
+				<a color="red">TRACKER</a>
+			</div>
+
+			<div class="mb-2">
+				<input v-model="email" type="text" id="username" class="form-control text-center rounded-pill" placeholder="Email"/>
+			</div>
+			<div class="mb-3">
+				<input v-model="password" type="password" class="form-control text-center rounded-pill" placeholder="Senha"/>
+			</div>
+
+			<p v-if="error" class="text-danger text-center">{{ error }}</p>
+
+			<button class="btn btn-primary w-100 rounded-pill mb-3" @click="doLogin">Login</button>
 		</div>
 	</div>
 
-  <router-view/>
+	<router-view/>
 </template>
 
 <style scoped>
