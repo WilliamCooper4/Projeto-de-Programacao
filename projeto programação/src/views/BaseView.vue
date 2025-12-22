@@ -80,7 +80,12 @@ window.showLogin = showLogin;
 </script>
 
 <template>
-	<H1>THIS IS HOME</H1>
+	<main>
+		<img src="/src/assets/imagens/livros.jpg" alt="livros" width="100%" />
+	</main>
+	<footer>
+
+	</footer>
 </template>
 
 <style scoped>
@@ -204,6 +209,15 @@ nav a:hover:not(.login-btn) {
 	position: fixed;
 	left: 25%;
 	top:25%;
+}
+footer {
+	background-color: #47a;
+	color: white;
+	text-align: center;
+	padding: 1rem;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 }
 
 </style>

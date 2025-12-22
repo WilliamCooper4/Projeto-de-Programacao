@@ -1,7 +1,18 @@
 <script setup>
 import { ref } from 'vue'
+import { onMounted } from 'vue'
 
 const isLoginVisible = ref(false)
+var login = false
+onMounted(() => {
+  const LogBTN = document.getElementById("Log")
+  if (login){
+	LogBTN.classList.add("invisible");
+  }
+  else{
+	LogBTN.classList.remove("invisible");
+  }
+})
 
 function toggleLogin() {
   isLoginVisible.value = !isLoginVisible.value
