@@ -13,16 +13,24 @@ const password = ref('')
 const Cpassword = ref('')
 const error = ref('')
 
+
 function toggleLogin() {
 	isLoginVisible.value = !isLoginVisible.value
 	error.value = ''
 }
 
 async function doLogin() {
+	var UserToLog= false
 	try {
-		await auth.login(email.value, password.value)
-		//console.log('LOGIN OK:', auth.user)
-		toggleLogin()
+		for(let i=0; i<userlist.users.length; i++){
+			if(email.value==userlist.users[i].email && password.value==userlist.users[i].password){
+				auth.login(userlist.users[i])
+				UserToLog= true
+			}
+		}
+		if(!UserToLog){
+			throw new Error('Email ou password incorretos.')
+		}
 	} catch (err) {
 		error.value = err.message
 	}
@@ -78,6 +86,11 @@ function adduser() {
 		<span v-if="auth.isLoggedIn" class="me-3">
 			Olá, {{ auth.user.name }}
 		</span>
+
+		<span v-if="auth.isLoggedIn" class="me-3" @click="userlist.DeleteUser(auth.user); logout();">
+			delete acount
+		</span>
+
 	</nav>
 
 	<div v-if="isLoginVisible" id="loginScreen">

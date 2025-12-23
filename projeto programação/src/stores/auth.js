@@ -8,20 +8,8 @@ export const useAuthStore = defineStore('auth', {
 	}),
 
 	actions: {
-		async login(email, password) {
-			const users = await get(`/users?email=${email}`)
-
-			if (!users.length) {
-				throw new Error('Utilizador não encontrado')
-			}
-
-			const user = users[0]
-
-			if (user.password !== password) {
-				throw new Error('Password incorreta')
-			}
-
-			this.user = user
+		async login(USER) {
+			this.user = USER
 			this.isLoggedIn = true
 		},
 

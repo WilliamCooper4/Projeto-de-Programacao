@@ -73,8 +73,11 @@ export const useuserlistStore = defineStore('userlist', {
             })
         },
 
-        DeleteUser() {
-            this.users.pop()
+        DeleteUser(USER) {
+			console.log('DeleteUser called with:', USER)
+  			console.log('Before:', this.users.map(u => u.email))
+			this.users =this.users.filter(user => user.email != USER.email)
+			console.log('After:', this.users.map(u => u.email))
         }
-    }
-})
+    }}
+)
