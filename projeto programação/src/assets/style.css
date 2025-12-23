@@ -30,13 +30,15 @@ nav a {
 	background: #1d3f61;
 	color: #abf8f0;
 	border: none;
+	transition: 0.4s;
 	padding: 8px 16px;
 	border-radius: 6px;
 	font-weight: bold;
 }
 
-nav a.login-btn:hover {
-	background: #eef;
+.login-btn:hover {
+	transition: 0.4s;
+	background: #128;
 }
 
 /* Hover dos links normais */

@@ -2,10 +2,8 @@
 import { ref, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useUsersStore } from '@/stores/users'
-import { UserlistStore } from '@/stores/userlist'
 
 const usersStore = useUsersStore()
-const userlist = UserlistStore()
 
 onMounted(() => {
 	usersStore.fetchUsers()
@@ -29,10 +27,13 @@ function toggleLogin() {
 async function doLogin() {
 	var UserToLog= false
 	try {
-		for(let i=0; i<userlist.users.length; i++){
-			if(email.value==userlist.users[i].email && password.value==userlist.users[i].password){
-				auth.login(userlist.users[i])
-				UserToLog= true
+		for(let i=0; i < usersStore.users.length; i++){
+			if(email.value == usersStore.users[i].email && password.value == usersStore.users[i].password){
+				auth.login(usersStore.users[i])
+				UserToLog = true
+				toggleLogin()
+				break;
+
 			}
 		}
 		if(!UserToLog){
@@ -62,8 +63,8 @@ function adduser() {
 			throw new Error('Os emails não coincidem.')
 		}
 
-		for(let i=0; i<userlist.users.length; i++){
-			if(email.value==userlist.users[i].email){
+		for(let i=0; i<usersStore.users.length; i++){
+			if(email.value==usersStore.users[i].email){
 				throw new Error('Utilizador já existe.')
 			}
 		}
@@ -74,7 +75,7 @@ function adduser() {
 	}
 	if(!fail){
 		console.log('USER ADDED')
-		userlist.addUser(email.value, password.value)
+		usersStore.addUser(email.value, password.value)
 		toggleLogin()
 	}
 }
@@ -89,13 +90,7 @@ function adduser() {
 		<button v-if="!auth.isLoggedIn" class="login-btn" id="Log" @click="toggleLogin" > Login </button>
 		<button v-else class="login-btn" id="Log" @click="logout" > Logout </button>
 
-		<span v-if="auth.isLoggedIn" class="me-3">
-			Olá, {{ auth.user.name }}
-		</span>
-
-		<span v-if="auth.isLoggedIn" class="me-3" @click="userlist.DeleteUser(auth.user); logout();">
-			delete acount
-		</span>
+		<button v-if="auth.isLoggedIn" class="login-btn" @click="usersStore.deleteUser(auth.user.id); logout();">Apagar Conta</button>
 
 	</nav>
 
@@ -170,19 +165,6 @@ nav a {
 	text-decoration: none;
 	color: #FFF;
 	font-weight: bold;
-}
-
-/* Botão de Login */
-nav a.login-btn {
-	background: #fff;
-	color: #4477aa;
-	padding: 8px 16px;
-	border-radius: 6px;
-	font-weight: bold;
-}
-
-nav a.login-btn:hover {
-	background: #eef;
 }
 
 /* Hover dos links normais */

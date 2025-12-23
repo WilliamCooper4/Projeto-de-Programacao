@@ -12,7 +12,7 @@ export const useUsersStore = defineStore('users', {
 		async fetchUsers() {
 			this.loading = true
 			try {
-				this.users = await get('/users')
+				this.users = await get('/users') //pegar db e guardar cópia
 			} catch (err) {
 				this.error = err.message
 			} finally {
@@ -21,6 +21,7 @@ export const useUsersStore = defineStore('users', {
 		},
 
 		async addUser(userEmail, userPassword) {
+			//o id é criado automaticamente, não é preciso por
 			const newUser = {
 				email: userEmail,
 				password: userPassword,
@@ -34,13 +35,13 @@ export const useUsersStore = defineStore('users', {
 				eventosCalendario: []
 			}
 
-			const createdUser = await post('/users', newUser)
+			const createdUser = await post('/users', newUser) //mandar utilizador novo para a db
 			this.users.push(createdUser)
 		},
 
 		async deleteUser(id) {
-			await del(`/users/${id}`)
-			this.users = this.users.filter(u => u.id !== id)
+			await del(`/users/${id}`) //apagar da base de dados, esperar que dê
+			this.users = this.users.filter(u => u.id !== id) //apagar da cópia local
 		}
 	}
 })

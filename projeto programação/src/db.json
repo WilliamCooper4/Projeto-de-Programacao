@@ -61,19 +61,6 @@
           "data": 2767316419
         }
       ]
-    },
-    {
-      "email": "t",
-      "password": "123",
-      "role": "user",
-      "profilepic": "image",
-      "classes": [],
-      "lvl": 1,
-      "exp": 0,
-      "streak": 0,
-      "lembretes": [],
-      "eventosCalendario": [],
-      "id": 2
     }
   ],
   "classes": [
