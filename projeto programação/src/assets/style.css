@@ -59,12 +59,11 @@ nav a:hover:not(.login-btn) {
 
 .side-bar{
     position: fixed;
-    top:  6.45rem;
-    margin-top: auto;
+    top:  8.2rem;
     background-color: #47a;
     border-right:0.2rem solid #128;
     width: 17%;
-    height: 83.9%;
+	margin-top: initial;
 }
 
 .side-bar a{
