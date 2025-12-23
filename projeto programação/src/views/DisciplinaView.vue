@@ -1,29 +1,5 @@
 <script setup>
 import "../assets/Disciplina.css"
-import { onMounted } from 'vue'
-onMounted(() => {
-	const LogBTN = document.getElementById("Log")
-	const loginScreen = document.getElementById("logbox")
-	// deteta se o click é dentro da da logbox
-	window.addEventListener('click', function (e) {
-		if (document.getElementById('logbox').contains(e.target)) {
-			// Clicked in box
-			console.log("inside")
-		} else {
-			console.log("outside")
-			loginScreen.classList.toggle("invisible")
-		}
-	});
-
-
-	LogBTN.addEventListener("click", function () {
-		console.log("login")
-
-		loginScreen.classList.toggle("invisible")
-	})
-
-
-})
 
 /*window.addEventListener('scroll', function () {
   const navbar = document.querySelector("#navbar nav");
