@@ -29,13 +29,16 @@ nav a {
 .login-btn {
 	background: #1d3f61;
 	color: #abf8f0;
+	border: none;
+	transition: 0.4s;
 	padding: 8px 16px;
 	border-radius: 6px;
 	font-weight: bold;
 }
 
-nav a.login-btn:hover {
-	background: #eef;
+.login-btn:hover {
+	transition: 0.4s;
+	background: #128;
 }
 
 /* Hover dos links normais */
@@ -56,12 +59,11 @@ nav a:hover:not(.login-btn) {
 
 .side-bar{
     position: fixed;
-    top:  6.45rem;
-    margin-top: auto;
+    top:  8.2rem;
     background-color: #47a;
     border-right:0.2rem solid #128;
     width: 17%;
-    height: 83.9%;
+	margin-top: initial;
 }
 
 .side-bar a{

@@ -1,60 +1,146 @@
 <script setup>
-import { ref } from 'vue'
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useAuthStore } from '@/stores/auth'
+import { useUsersStore } from '@/stores/users'
 
-const isLoginVisible = ref(false)
-var login = false
+const usersStore = useUsersStore()
+
 onMounted(() => {
-  const LogBTN = document.getElementById("Log")
-  if (login){
-	LogBTN.classList.add("invisible");
-  }
-  else{
-	LogBTN.classList.remove("invisible");
-  }
+	usersStore.fetchUsers()
 })
 
+var showRegister = ref(false)
+const auth = useAuthStore()
+const isLoginVisible = ref(false)
+const email = ref('')
+const Cemail = ref('')
+const password = ref('')
+const Cpassword = ref('')
+const error = ref('')
+
+
 function toggleLogin() {
-  isLoginVisible.value = !isLoginVisible.value
+	isLoginVisible.value = !isLoginVisible.value
+	error.value = ''
 }
+
+async function doLogin() {
+	var UserToLog= false
+	try {
+		for(let i=0; i < usersStore.users.length; i++){
+			if(email.value == usersStore.users[i].email && password.value == usersStore.users[i].password){
+				auth.login(usersStore.users[i])
+				UserToLog = true
+				toggleLogin()
+				break;
+
+			}
+		}
+		if(!UserToLog){
+			throw new Error('Email ou password incorretos.')
+		}
+	} catch (err) {
+		error.value = err.message
+	}
+}
+
+function logout() {
+	auth.logout()
+}
+
+function adduser() {
+	var fail = false
+	try {
+		if(!email.value || !password.value || !Cemail.value || !Cpassword.value){
+			throw new Error('Por favor, preencha todos os campos.')
+		}
+
+		else if(password.value != Cpassword.value){
+			throw new Error('As senhas não coincidem.')
+		}
+
+		else if(email.value != Cemail.value){
+			throw new Error('Os emails não coincidem.')
+		}
+
+		for(let i=0; i<usersStore.users.length; i++){
+			if(email.value==usersStore.users[i].email){
+				throw new Error('Utilizador já existe.')
+			}
+		}
+	}
+	catch (err) {
+		fail = true
+		error.value = err.message
+	}
+	if(!fail){
+		console.log('USER ADDED')
+		usersStore.addUser(email.value, password.value)
+		toggleLogin()
+	}
+}
+
 </script>
 
 <template>
-	  <nav>
+	<nav>
 		<router-link to="/">Princípio</router-link>
-		<router-link to="/Dis">Disciplinas</router-link>
+		<router-link v-if="auth.isLoggedIn" to="/Dis">Disciplinas</router-link>
 		<a href="#">Calendário</a>
-		<!-- updated attributes to use Bootstrap's modal trigger -->
-		<p class="login-btn" id="Log" @click="toggleLogin">Login</p>
+		<button v-if="!auth.isLoggedIn" class="login-btn" id="Log" @click="toggleLogin" > Login </button>
+		<button v-else class="login-btn" id="Log" @click="logout" > Logout </button>
+
+		<button v-if="auth.isLoggedIn" class="login-btn" @click="usersStore.deleteUser(auth.user.id); logout();">Apagar Conta</button>
+
 	</nav>
+
 	<div v-if="isLoginVisible" id="loginScreen">
 		<div class="BlackBack" id="Black" @click="toggleLogin"></div>
 		<div id="loginForm" class="p-4">
-					<div class="text-center mb-4">
-						<a color="red">TRACKER</a>
-					</div>
-					<div class="mb-2">
-						<input type="text" id="username" class="form-control text-center rounded-pill" placeholder="Nome de Utilizador">
-					</div>
-					<div class="mb-3">
-						<input type="password" id="password" class="form-control text-center rounded-pill" placeholder="Palavra-passe">
-					</div>
-			<button id="btnLogin" class="btn btn-primary w-100 rounded-pill mb-2">Login</button>
-			<button class="btn btn-primary w-100 rounded-pill mb-3" onclick="showRegister()">Criar Conta</button>
+			<div class="text-center mb-4">
+				<p>TRACKER</p>
+			</div>
+
+			<div class="mb-2">
+				<input v-model="email" type="text" id="username" class="form-control text-center rounded-pill" placeholder="Email"/>
+			</div>
+			<div class="mb-2">
+				<input v-if="showRegister" v-model="Cemail" type="text" id="CUserName" class="form-control text-center rounded-pill" placeholder="Confirmar Email"/>
+			</div>
+			<div class="mb-3">
+				<input v-model="password" type="password" class="form-control text-center rounded-pill" placeholder="Senha"/>
+			</div>
+			<div class="mb-3">
+				<input v-if="showRegister" v-model="Cpassword" type="password" id="Cp" class="form-control text-center rounded-pill" placeholder="Confirmar Senha"/>
+			</div>
+
+			<p v-if="error" class="text-danger text-center">{{ error }}</p>
+
+			<button v-if="!showRegister" class="btn btn-primary w-100 rounded-pill mb-3" @click="doLogin">Login</button>
+			<button v-if="!showRegister" class="btn btn-secondary w-100 rounded-pill mb-3" @click="showRegister = true" >Criar Conta</button>
+			<button v-if="showRegister" class="btn btn-primary w-100 rounded-pill mb-3" @click="adduser">Criar Conta</button>
+			<button v-if="showRegister" class="btn btn-secondary w-100 rounded-pill mb-3" @click="showRegister = false" >Voltar</button>
 		</div>
 	</div>
 
-  <router-view/>
+	<router-view/>
 </template>
 
 <style scoped>
 
+.btn-primary {
+	background-color: #112288;
+}
 
-		/* limit width of this specific modal to make it appear smaller */
-		#loginModal .modal-dialog {
-			max-width: 420px;
-			margin: 1.75rem auto;
-		}
+.btn-primary:hover {
+	background-color: #081144;
+}
+
+/* limit width of this specific modal to make it appear smaller */
+#loginModal .modal-dialog {
+	max-width: 420px;
+	margin: 1.75rem auto;
+}
 
 body {
 	margin: 0;
@@ -79,19 +165,6 @@ nav a {
 	text-decoration: none;
 	color: #FFF;
 	font-weight: bold;
-}
-
-/* Botão de Login */
-nav a.login-btn {
-	background: #fff;
-	color: #4477aa;
-	padding: 8px 16px;
-	border-radius: 6px;
-	font-weight: bold;
-}
-
-nav a.login-btn:hover {
-	background: #eef;
 }
 
 /* Hover dos links normais */
@@ -179,8 +252,9 @@ nav a:hover:not(.login-btn) {
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	background-color: white;
-	}
-
+	background-color: #47a;
+	outline: solid #128;
+	border-radius: 6px;
+}
 
 </style>

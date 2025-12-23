@@ -8,7 +8,7 @@
 
 <template>
 	<div class="BlackBack" id="Black"></div>
-    <div id="loginScreen" class="p-4">
+	<div id="loginScreen" class="p-4">
 				<div class="text-center mb-4">
 					<a color="red">TRACKER</a>
 				</div>
@@ -21,7 +21,6 @@
 		<button id="btnLogin" class="btn btn-primary w-100 rounded-pill mb-2">Login</button>
 		<button class="btn btn-primary w-100 rounded-pill mb-3" onclick="showRegister()">CriarConta</button>
 	</div>
-	
 </template>
 
 

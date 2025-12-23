@@ -2,5 +2,5 @@ npm install
 
 codigo a correr:
 
-cd "C:\Users\guilh\OneDrive\Documentos\Projeto-de-Programacao\projeto programação"
+cd "projeto programação"
 npm run dev
