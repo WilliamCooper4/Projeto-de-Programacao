@@ -1,11 +1,16 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
-import { useuserlistStore } from './stores/userlist'
+import { useUsersStore } from '@/stores/users'
+
+const usersStore = useUsersStore()
+
+onMounted(() => {
+	usersStore.fetchUsers()
+})
 
 var showRegister = ref(false)
 const auth = useAuthStore()
-const userlist = useuserlistStore()
 const isLoginVisible = ref(false)
 const email = ref('')
 const Cemail = ref('')
@@ -43,32 +48,31 @@ function logout() {
 function adduser() {
 	var fail = false
 	try {
-		if(!email.value || !password.value || !Cemail.value || !Cpassword.value){ 
+		if(!email.value || !password.value || !Cemail.value || !Cpassword.value){
 			throw new Error('Por favor, preencha todos os campos.')
 		}
+
 		else if(password.value != Cpassword.value){
 			throw new Error('As senhas não coincidem.')
 		}
-		
+
 		else if(email.value != Cemail.value){
 			throw new Error('Os emails não coincidem.')
 		}
-		
-		for(let i=0; i<userlist.users.length; i++){
-			if(email.value==userlist.users[i].email){
-				throw new Error('Usuário já existe.')
+
+		for(let i=0; i<usersStore.users.length; i++){
+			if(email.value==usersStore.users[i].email){
+				throw new Error('Utilizador já existe.')
 			}
 		}
-	
-	
-	}	
+	}
 	catch (err) {
 		fail = true
 		error.value = err.message
 	}
 	if(!fail){
 		console.log('USER ADDED')
-		userlist.addUser(email.value, password.value)
+		usersStore.addUser(email.value, password.value)
 		toggleLogin()
 	}
 }
@@ -82,6 +86,7 @@ function adduser() {
 		<a href="#">Calendário</a>
 		<button v-if="!auth.isLoggedIn" class="login-btn" id="Log" @click="toggleLogin" > Login </button>
 		<button v-else class="login-btn" id="Log" @click="logout" > Logout </button>
+<<<<<<< HEAD
 
 		<span v-if="auth.isLoggedIn" class="me-3">
 			Olá, {{ auth.user.name }}
@@ -91,6 +96,8 @@ function adduser() {
 			delete acount
 		</span>
 
+=======
+>>>>>>> 76765d86bb995aa581f11012e92ce11703c48895
 	</nav>
 
 	<div v-if="isLoginVisible" id="loginScreen">
@@ -116,9 +123,9 @@ function adduser() {
 			<p v-if="error" class="text-danger text-center">{{ error }}</p>
 
 			<button v-if="!showRegister" class="btn btn-primary w-100 rounded-pill mb-3" @click="doLogin">Login</button>
-			<button v-if="!showRegister" class="btn btn-primary w-100 rounded-pill mb-3" @click="showRegister = true" >Criar Conta</button>
+			<button v-if="!showRegister" class="btn btn-secondary w-100 rounded-pill mb-3" @click="showRegister = true" >Criar Conta</button>
 			<button v-if="showRegister" class="btn btn-primary w-100 rounded-pill mb-3" @click="adduser">Criar Conta</button>
-			<button v-if="showRegister" class="btn btn-primary w-100 rounded-pill mb-3" @click="showRegister = false" >return</button>
+			<button v-if="showRegister" class="btn btn-secondary w-100 rounded-pill mb-3" @click="showRegister = false" >Voltar</button>
 		</div>
 	</div>
 
