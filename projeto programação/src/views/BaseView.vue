@@ -1,52 +1,7 @@
 <script setup>
-console.log("sup")
-var visible = false
-
-import { onMounted } from 'vue'
-
 
 // colocar todos os elementos de DOM dentro de onMounted
-onMounted(() => {
-  const LogBTN = document.getElementById("Log")
-  const loginScreen= document.getElementById("logbox")
 
-	function addLog(){
-		LogBTN.removeEventListener("click");
-		window.addEventListener('click', function(e){
-			if (document.getElementById('logbox').contains(e.target)){
-				// Clicked in box
-				console.log("inside")
-			} else{
-				console.log("outside")
-				loginScreen.classList.toggle("invisible")
-				window.removeEventListener("cli")
-				LogBTN.addEventListener("click", function() {
-				console.log("login")
-				loginScreen.classList.toggle("invisible")
-				addLog()
-				})
-			}
-			});
-	}
-		/*window.addEventListener('click', function(e){
-		if (document.getElementById('logbox').contains(e.target)){
-			// Clicked in box
-			console.log("inside")
-		} else{
-			console.log("outside")
-			loginScreen.classList.toggle("invisible")
-		}
-		});*/
-
-			LogBTN.addEventListener("click", function() {
-			console.log("login")
-			loginScreen.classList.toggle("invisible")
-			addLog()
-			})
-
-
-
-})
 
 window.addEventListener('scroll', function () {
   const navbar = document.querySelector("#navbar nav");
@@ -80,7 +35,7 @@ window.showLogin = showLogin;
 </script>
 
 <template>
-	<H1>THIS IS HOME</H1>
+	<h1>THIS IS HOME</h1>
 </template>
 
 <style scoped>
