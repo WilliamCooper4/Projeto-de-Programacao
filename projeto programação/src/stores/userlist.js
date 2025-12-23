@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { get } from '@/api/api'
 var data = import('../db.json')
 
-export const useuserlistStore = defineStore('userlist', {
+export const UserlistStore = defineStore('userlist', {
     state: () => ({
         users: [
 		{

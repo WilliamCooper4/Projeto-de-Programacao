@@ -2,8 +2,10 @@
 import { ref, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useUsersStore } from '@/stores/users'
+import { UserlistStore } from '@/stores/userlist'
 
 const usersStore = useUsersStore()
+const userlist = UserlistStore()
 
 onMounted(() => {
 	usersStore.fetchUsers()
@@ -60,8 +62,8 @@ function adduser() {
 			throw new Error('Os emails não coincidem.')
 		}
 
-		for(let i=0; i<usersStore.users.length; i++){
-			if(email.value==usersStore.users[i].email){
+		for(let i=0; i<userlist.users.length; i++){
+			if(email.value==userlist.users[i].email){
 				throw new Error('Utilizador já existe.')
 			}
 		}
@@ -72,7 +74,7 @@ function adduser() {
 	}
 	if(!fail){
 		console.log('USER ADDED')
-		usersStore.addUser(email.value, password.value)
+		userlist.addUser(email.value, password.value)
 		toggleLogin()
 	}
 }
@@ -86,7 +88,6 @@ function adduser() {
 		<a href="#">Calendário</a>
 		<button v-if="!auth.isLoggedIn" class="login-btn" id="Log" @click="toggleLogin" > Login </button>
 		<button v-else class="login-btn" id="Log" @click="logout" > Logout </button>
-<<<<<<< HEAD
 
 		<span v-if="auth.isLoggedIn" class="me-3">
 			Olá, {{ auth.user.name }}
@@ -96,8 +97,6 @@ function adduser() {
 			delete acount
 		</span>
 
-=======
->>>>>>> 76765d86bb995aa581f11012e92ce11703c48895
 	</nav>
 
 	<div v-if="isLoginVisible" id="loginScreen">
