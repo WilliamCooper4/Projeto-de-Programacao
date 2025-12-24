@@ -4,3 +4,6 @@ codigo a correr:
 
 cd "projeto programação"
 npm run dev
+
+cd "projeto programação"
+npm run server
