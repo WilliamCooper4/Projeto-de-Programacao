@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { get, post, del } from '@/api/api'
+import { get, post, put, del } from '@/api/api'
 
 export const useUsersStore = defineStore('users', {
 	state: () => ({
@@ -37,6 +37,19 @@ export const useUsersStore = defineStore('users', {
 
 			const createdUser = await post('/users', newUser) //mandar utilizador novo para a db
 			this.users.push(createdUser)
+		},
+
+		async updateUser(updatedUser) {
+			if (!updatedUser.id) throw new Error("O utilizador precisa de ter um ID")
+
+			try {
+				const savedUser = await put(`/users/${updatedUser.id}`, updatedUser)
+				const index = this.users.findIndex(u => u.id === updatedUser.id)
+				if (index !== -1) this.users[index] = savedUser
+			} catch (err) {
+				this.error = err.message
+				console.error(err)
+			}
 		},
 
 		async deleteUser(id) {

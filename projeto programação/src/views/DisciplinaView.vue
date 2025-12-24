@@ -11,7 +11,6 @@ onMounted(async () => {
 	await classesStore.fetchClasses()
 })
 
-// classes do utilizador -> objetos
 const userClasses = computed(() => {
 	if (!auth.user) return []
 	return auth.user.classes
@@ -19,11 +18,16 @@ const userClasses = computed(() => {
 		.filter(Boolean) // remove se não existir
 })
 
-// disciplina 1 selecionada por deferencia
-const selectedClass = ref(userClasses.value[0] || 0)
+const selectedClass = ref(userClasses.value[0] || null)
 
 function selectClass(cls) {
 	selectedClass.value = cls
+}
+
+// xp
+function giveXP(amount = 10) {
+	if (!auth.user) return
+	auth.addExp(amount)  // assume que tens uma função na authStore para isso
 }
 </script>
 
@@ -50,19 +54,19 @@ function selectClass(cls) {
 				<h1>{{ selectedClass.name }}</h1>
 				<p>{{ selectedClass.description }}</p>
 
-				<h2>Exercícios</h2>
-				<ul>
-					<li v-for="ex in selectedClass.exercises" :key="ex.id">
-						<a :href="ex.link" target="_blank">{{ ex.nome }}</a>
-					</li>
-				</ul>
+					<h2>Exercícios</h2>
+					<ul>
+						<li v-for="ex in selectedClass.exercises" :key="ex.id">
+							<a :href="ex.link" target="_blank" @click.prevent="giveXP(5)">{{ ex.nome }}</a>
+						</li>
+					</ul>
 
-				<h2>Material de Estudo</h2>
-				<ul>
-					<li v-for="res in selectedClass.resources" :key="res.id">
-						<a :href="res.link" target="_blank">{{ res.nome }}</a>
-					</li>
-				</ul>
+					<h2>Material de Estudo</h2>
+					<ul>
+						<li v-for="res in selectedClass.resources" :key="res.id">
+							<a :href="res.link" target="_blank" @click.prevent="giveXP(3)">{{ res.nome }}</a>
+						</li>
+					</ul>
 			</div>
 		</div>
 	</main>

@@ -25,6 +25,21 @@ export const useAuthStore = defineStore('auth', {
 			await usersStore.deleteUser(this.user.id)
 
 			this.logout()
+		},
+
+		addExp(amount) {
+			if (!this.user) return
+
+			this.user.exp += amount
+
+			while (this.user.exp >= 100) {
+				this.user.exp -= 100
+				this.user.lvl += 1
+			}
+
+			// Atualiza no DB.json — envia o objeto completo
+			const usersStore = useUsersStore()
+			usersStore.updateUser(this.user)
 		}
 	}
 })

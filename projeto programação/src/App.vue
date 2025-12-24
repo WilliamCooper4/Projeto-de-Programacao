@@ -144,7 +144,7 @@ function resetForm() {
 <style scoped>
 
 .btn-primary {
-	background-color: #112288;
+	background-color: #128;
 }
 
 .btn-primary:hover {
