@@ -5,7 +5,7 @@
       "email": "myemail@gmail.com",
       "password": "password",
       "role": "admin",
-      "profilepic": "image",
+      "profilepic": "/pfps/user.png",
       "classes": [
         "Computação Gráfica",
         "Programação Web",
@@ -33,7 +33,7 @@
       "email": "123@esmad.ipp.pt",
       "password": "1234",
       "role": "user",
-      "profilepic": "image",
+      "profilepic": "/pfps/user.png",
       "classes": [
         "Sistemas Computacionais",
         "Programação Web",
@@ -61,6 +61,19 @@
           "data": 2767316419
         }
       ]
+    },
+    {
+      "email": "t",
+      "password": "123",
+      "role": "user",
+      "profilepic": "/pfps/user.png",
+      "classes": [],
+      "lvl": 1,
+      "exp": 0,
+      "streak": 0,
+      "lembretes": [],
+      "eventosCalendario": [],
+      "id": 2
     }
   ],
   "classes": [

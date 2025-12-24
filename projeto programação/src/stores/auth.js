@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { get } from '@/api/api'
+import { useUsersStore } from './users'
 
 export const useAuthStore = defineStore('auth', {
 	state: () => ({
@@ -8,7 +8,7 @@ export const useAuthStore = defineStore('auth', {
 	}),
 
 	actions: {
-		async login(USER) {
+		login(USER) {
 			this.user = USER
 			this.isLoggedIn = true
 		},
@@ -16,6 +16,15 @@ export const useAuthStore = defineStore('auth', {
 		logout() {
 			this.user = null
 			this.isLoggedIn = false
+		},
+
+		async delMyAcc() {
+			if (!this.user) return
+
+			const usersStore = useUsersStore()
+			await usersStore.deleteUser(this.user.id)
+
+			this.logout()
 		}
 	}
 })

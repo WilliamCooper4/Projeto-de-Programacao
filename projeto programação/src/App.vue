@@ -2,16 +2,18 @@
 import { ref, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useUsersStore } from '@/stores/users'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const usersStore = useUsersStore()
 
 onMounted(() => {
 	usersStore.fetchUsers()
 })
 
-var showRegister = ref(false)
 const auth = useAuthStore()
 const isLoginVisible = ref(false)
+const showRegister = ref(false)
 const email = ref('')
 const Cemail = ref('')
 const password = ref('')
@@ -21,6 +23,7 @@ const error = ref('')
 
 function toggleLogin() {
 	isLoginVisible.value = !isLoginVisible.value
+	if (!isLoginVisible.value) resetForm()
 	error.value = ''
 }
 
@@ -32,6 +35,8 @@ async function doLogin() {
 				auth.login(usersStore.users[i])
 				UserToLog = true
 				toggleLogin()
+				resetForm()
+				isLoginVisible.value = false
 				break;
 
 			}
@@ -46,6 +51,8 @@ async function doLogin() {
 
 function logout() {
 	auth.logout()
+	resetForm()
+	router.push('/') // redireciona para a página principal
 }
 
 function adduser() {
@@ -76,8 +83,18 @@ function adduser() {
 	if(!fail){
 		console.log('USER ADDED')
 		usersStore.addUser(email.value, password.value)
-		toggleLogin()
+		resetForm()
+		doLogin()
 	}
+}
+
+function resetForm() {
+	email.value = ''
+	Cemail.value = ''
+	password.value = ''
+	Cpassword.value = ''
+	error.value = ''
+	showRegister.value = false
 }
 
 </script>
@@ -87,11 +104,9 @@ function adduser() {
 		<router-link to="/">Princípio</router-link>
 		<router-link v-if="auth.isLoggedIn" to="/Dis">Disciplinas</router-link>
 		<a href="#">Calendário</a>
+		<router-link v-if="auth.isLoggedIn" to="/User">Utilizador</router-link>
 		<button v-if="!auth.isLoggedIn" class="login-btn" id="Log" @click="toggleLogin" > Login </button>
 		<button v-else class="login-btn" id="Log" @click="logout" > Logout </button>
-
-		<button v-if="auth.isLoggedIn" class="login-btn" @click="usersStore.deleteUser(auth.user.id); logout();">Apagar Conta</button>
-
 	</nav>
 
 	<div v-if="isLoginVisible" id="loginScreen">
