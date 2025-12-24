@@ -1,6 +1,7 @@
 import BaseView from '@/views/BaseView.vue'
 import DisciplinaView from '@/views/DisciplinaView.vue'
 import ProfileView from '@/views/ProfileView.vue'
+import AdminView from '@/views/AdminView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -22,16 +23,10 @@ const router = createRouter({
 			component: ProfileView
 		},
 		{
-			path: "/login",
-			name: "login",
-			component: () => import('@/views/LoginView.vue')
-		},
-		{
 			path: "/admin",
 			name: "admin",
-			component: () => import('@/views/adminview.vue')
+			component: AdminView
 		}
-		
 	],
 })
 
