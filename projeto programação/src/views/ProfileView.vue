@@ -54,9 +54,10 @@ async function deleteAccount() {
 
 <style scoped>
 .title {
-	text-align: center;
+	text-align: left;
 	color: #128;
-	padding-top: 2rem;
+	margin-top: 2rem;
+	margin-left: 5rem;
 }
 
 .pfp {

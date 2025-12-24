@@ -113,6 +113,43 @@
           "link": "https://youtu.be/bleEztMsSDk"
         }
       ]
+    },
+    {
+      "id": 0,
+      "name": "Bases de Dados",
+      "description": "isto é só uma cópia da programação web para mostrar que funciona",
+      "exercises": [
+        {
+          "id": 0,
+          "nome": "exercicio 1",
+          "link": "https://moodle.esmad.ipp.pt/"
+        },
+        {
+          "id": 1,
+          "nome": "exercicio 2",
+          "link": "https://domus.ipp.pt/home/"
+        }
+      ],
+      "resources": [
+        {
+          "id": 0,
+          "type": "doc",
+          "nome": "Introdução a Pinia",
+          "link": "https://moodle.esmad.ipp.pt/mod/resource/view.php?id=4691"
+        },
+        {
+          "id": 1,
+          "type": "doc",
+          "nome": "Vue: Acesso a APIs",
+          "link": "https://moodle.esmad.ipp.pt/mod/resource/view.php?id=5442"
+        },
+        {
+          "id": 2,
+          "type": "video",
+          "nome": "Passo-a-passo: FETCH a mock server",
+          "link": "https://youtu.be/bleEztMsSDk"
+        }
+      ]
     }
   ]
 }
