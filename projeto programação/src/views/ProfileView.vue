@@ -39,6 +39,7 @@ async function deleteAccount() {
 
 			<p><strong>Email:</strong> {{ user.email }}</p>
 			<p><strong>Role:</strong> {{ user.role }}</p>
+			<RouterLink to="/admin" v-if="user.role === 'admin'">abrir painel de admin</RouterLink>
 
 			<hr>
 
