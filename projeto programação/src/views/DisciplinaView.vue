@@ -61,7 +61,7 @@ function giveXP(amount = 10) {
 			<!-- sidebar -->
 			<aside class="side-bar">
 				<h3>Disciplinas</h3>
-				<ul>
+				<ul style="padding-bottom: 2em;">
 					<li
 						v-for="cls in userClasses"
 						:key="cls.id"
