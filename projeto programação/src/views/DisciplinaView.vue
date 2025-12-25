@@ -3,13 +3,36 @@ import "../assets/Disciplina.css"
 import { ref, computed, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useClassesStore } from '@/stores/classes'
+import { useUsersStore } from '@/stores/users'
 
 const auth = useAuthStore()
 const classesStore = useClassesStore()
+const usersStore = useUsersStore()
 
 onMounted(async () => {
 	await classesStore.fetchClasses()
+	await usersStore.fetchUsers()
 })
+
+const showClassPicker = ref(false)
+const selectedClasses = ref([])
+
+function openCloseClassPicker() {
+	if (!auth.user) return
+	showClassPicker.value = !showClassPicker.value
+	if (showClassPicker.value) selectedClasses.value = [...auth.user.classes]
+}
+
+async function saveClasses() {
+	if (!auth.user) return
+
+	auth.user.classes = [...selectedClasses.value]
+
+	// persistir na base de dados
+	await usersStore.updateUser(auth.user)
+
+	showClassPicker.value = false
+}
 
 const userClasses = computed(() => {
 	if (!auth.user) return []
@@ -47,7 +70,36 @@ function giveXP(amount = 10) {
 						{{ cls.name }}
 					</li>
 				</ul>
+
+				<button id="btnLogin" class="btn btn-secondary w-100 rounded-pill mb-1" @click="openCloseClassPicker">
+					Adicionar Disciplinas
+				</button>
 			</aside>
+
+			<!-- adicionar disciplinas -->
+			<div v-if="showClassPicker" class="modal-back">
+				<div class="modal-box">
+					<h2 style="text-align: center;">Escolher Disciplinas</h2>
+
+					<ul>
+						<li v-for="cls in classesStore.classes" :key="cls.id">
+							<label>
+								<input
+									type="checkbox"
+									:value="cls.name"
+									v-model="selectedClasses"
+								/>
+								{{ cls.name }}
+							</label>
+						</li>
+					</ul>
+
+					<div class="actions">
+						<button class="login-btn" @click="saveClasses(); openCloseClassPicker();">Guardar</button>
+						<button class="login-btn" @click="openCloseClassPicker">Cancelar</button>
+					</div>
+				</div>
+			</div>
 
 			<!-- conteudo da disciplina -->
 			<div class="page-content" v-if="selectedClass">
@@ -107,5 +159,34 @@ function giveXP(amount = 10) {
 
 .side-bar ul li:hover {
 	background-color: #128;
+}
+
+.modal-back {
+	position: fixed;
+	inset: 0;
+	background: rgba(0,0,0,0.6);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+}
+
+.modal-box {
+	background: #47a;
+	padding: 1.5rem;
+	border: solid #128;
+	border-radius: 2rem;
+	width: 25%;
+}
+
+.modal-box ul {
+	list-style: none;
+	padding: 0;
+}
+
+.actions {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 1rem;
 }
 </style>

@@ -67,9 +67,13 @@
       "password": "123",
       "role": "user",
       "profilepic": "/pfps/user.png",
-      "classes": [],
+      "classes": [
+        "Programação Web",
+        "Bases de Dados",
+        "Computação Gráfica"
+      ],
       "lvl": 3,
-      "exp": 40,
+      "exp": 50,
       "streak": 0,
       "lembretes": [],
       "eventosCalendario": [],
@@ -116,6 +120,48 @@
     },
     {
       "id": 1,
+      "name": "Computação Gráfica",
+      "description": "abcdefghijklmnopqrstuvwxyz",
+      "exercises": [
+        {
+          "id": 0,
+          "nome": "exercicio 1",
+          "link": "https://moodle.esmad.ipp.pt/"
+        },
+        {
+          "id": 1,
+          "nome": "exercicio 2",
+          "link": "https://domus.ipp.pt/home/"
+        },
+        {
+          "id": 2,
+          "nome": "exercicio 47",
+          "link": "https://domus.ipp.pt/home/"
+        }
+      ],
+      "resources": [
+        {
+          "id": 0,
+          "type": "doc",
+          "nome": "Introdução a Three.js",
+          "link": "https://moodle.esmad.ipp.pt/"
+        },
+        {
+          "id": 1,
+          "type": "doc",
+          "nome": "A-frame",
+          "link": "https://moodle.esmad.ipp.pt/mod/resource/view.php?id=5442"
+        },
+        {
+          "id": 2,
+          "type": "video",
+          "nome": "Video Teste",
+          "link": "https://www.youtube.com/watch?v=jNQXAC9IVRw&vl=en"
+        }
+      ]
+    },
+    {
+      "id": 2,
       "name": "Bases de Dados",
       "description": "isto é só uma cópia da programação web para mostrar que funciona",
       "exercises": [
