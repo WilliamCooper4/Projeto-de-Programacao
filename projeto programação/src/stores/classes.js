@@ -1,25 +1,53 @@
 import { defineStore } from 'pinia'
-import { get } from '@/api/api'
+import { get, post, put, del } from '@/api/api'
 
 export const useClassesStore = defineStore('classes', {
 	state: () => ({
-		classes: []
+		classes: [],
+		loading: false,
+		error: null
 	}),
+
 	actions: {
 		async fetchClasses() {
+			this.loading = true
 			try {
-				const data = await get('/classes')
-				this.classes = data
+				this.classes = await get('/classes')
 			} catch (err) {
-				console.error('Erro ao buscar classes:', err)
+				this.error = err.message
+			} finally {
+				this.loading = false
 			}
 		},
-		// opcional: buscar por nome ou id
+
 		getClassByName(name) {
 			return this.classes.find(c => c.name === name)
 		},
 		getClassById(id) {
 			return this.classes.find(c => c.id === id)
+		},
+
+		async addClass(newClass) {
+			const created = await post('/classes', newClass)
+			this.classes.push(created)
+		},
+
+		async updateClass(updatedClass) {
+			if (!updatedClass.id) throw new Error('A disciplina precisa de ID')
+
+			try {
+				const saved = await put(`/classes/${updatedClass.id}`, updatedClass)
+				const index = this.classes.findIndex(c => c.id === updatedClass.id)
+				if (index !== -1) this.classes[index] = saved
+			} catch (err) {
+				this.error = err.message
+				console.error(err)
+			}
+		},
+
+		async deleteClass(id) {
+			await del(`/classes/${id}`)
+			this.classes = this.classes.filter(c => c.id !== id)
 		}
 	}
 })
