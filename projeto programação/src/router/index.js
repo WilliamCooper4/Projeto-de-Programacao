@@ -2,6 +2,7 @@ import BaseView from '@/views/BaseView.vue'
 import DisciplinaView from '@/views/DisciplinaView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import AdminView from '@/views/AdminView.vue'
+import CalendarView from '@/views/CalendarView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -30,8 +31,8 @@ const router = createRouter({
 		{
 			path:"/calendar",
 			name:"calendar",
-			component: () => import('@/views/CalendarView.vue')
-		}
+			component: CalendarView
+		},
 	],
 })
 
