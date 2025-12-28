@@ -78,6 +78,32 @@
       "lembretes": [],
       "eventosCalendario": [],
       "id": 2
+    },
+    {
+      "email": "jeff",
+      "password": "jeff",
+      "role": "user",
+      "profilepic": "image",
+      "classes": [],
+      "lvl": 1,
+      "exp": 0,
+      "streak": 0,
+      "lembretes": [],
+      "eventosCalendario": [],
+      "id": 3
+    },
+    {
+      "email": "tav",
+      "password": "tav",
+      "role": "user",
+      "profilepic": "image",
+      "classes": [],
+      "lvl": 1,
+      "exp": 0,
+      "streak": 0,
+      "lembretes": [],
+      "eventosCalendario": [],
+      "id": 4
     }
   ],
   "classes": [

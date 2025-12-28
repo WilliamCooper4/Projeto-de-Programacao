@@ -34,9 +34,10 @@ export const useUsersStore = defineStore('users', {
 				lembretes: [],
 				eventosCalendario: []
 			}
-
+			console.log('USER CREATED')
 			const createdUser = await post('/users', newUser) //mandar utilizador novo para a db
 			this.users.push(createdUser)
+			
 		},
 
 		async updateUser(updatedUser) {
