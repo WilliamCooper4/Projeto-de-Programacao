@@ -100,7 +100,7 @@ function resetForm() {
   <nav>
     <router-link to="/">Princípio</router-link>
     <router-link v-if="auth.isLoggedIn" to="/Dis">Disciplinas</router-link>
-    <a href="projeto programação\src\views\CalendarView.vue">Calendário</a>
+    <router-link to="/calendar">Calendário</router-link>
     <router-link v-if="auth.isLoggedIn" to="/User"
       ><img
         :src="auth.user?.profilepic"

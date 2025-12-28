@@ -26,6 +26,11 @@ const router = createRouter({
 			path: "/admin",
 			name: "admin",
 			component: AdminView
+		},
+		{
+			path:"/calendar",
+			name:"calendar",
+			component: () => import('@/views/CalendarView.vue')
 		}
 	],
 })
