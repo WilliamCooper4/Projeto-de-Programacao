@@ -46,6 +46,9 @@ nav a:hover:not(.login-btn) {
 	text-decoration: underline;
 }
 
+.inside-app {
+	padding: 20px;
+}
 
 @font-face {
 	font-family: "Maiandra GD";

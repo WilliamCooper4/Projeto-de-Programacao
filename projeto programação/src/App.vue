@@ -106,7 +106,7 @@ function resetForm() {
 	<nav>
 		<router-link to="/">Princípio</router-link>
 		<router-link v-if="auth.isLoggedIn" to="/Dis">Disciplinas</router-link>
-		<a href="#">Calendário</a>
+		<a href="projeto programação\src\views\CalendarView.vue">Calendário</a>
 		<router-link v-if="auth.isLoggedIn" to="/User">Utilizador</router-link>
 		<button v-if="!auth.isLoggedIn" class="login-btn" id="Log" @click="toggleLogin" > Login </button>
 		<button v-else class="login-btn" id="Log" @click="logout" > Logout </button>
