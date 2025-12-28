@@ -122,4 +122,8 @@ body {
 	align-items: center;
 	justify-content: flex-end;
 }
+
+body {
+	padding: 20px;
+}
 </style>
