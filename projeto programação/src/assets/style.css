@@ -46,8 +46,21 @@ nav a:hover:not(.login-btn) {
 	text-decoration: underline;
 }
 
-.inside-app {
-	padding: 20px;
+.SmallPfp{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-bottom: 20px;
+}
+
+
+.pfp{
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-bottom: 20px;
 }
 
 @font-face {
