@@ -11,10 +11,12 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
-	"server": "json-server --watch src/db.json --port 3000"
+    "server": "json-server --watch src/db.json --port 3000"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "pinia": "^3.0.4",
+    "v-calendar": "^3.1.2",
     "vue": "^3.5.25",
     "vue-router": "^4.6.3"
   },
@@ -22,8 +24,8 @@
     "@vitejs/plugin-vue": "^6.0.2",
     "@vue/test-utils": "^2.4.6",
     "jsdom": "^27.2.0",
+    "json-server": "0.17.4",
     "vite": "^7.2.4",
-	"json-server": "0.17.4",
     "vite-plugin-vue-devtools": "^8.0.5",
     "vitest": "^4.0.14"
   }

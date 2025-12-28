@@ -35,7 +35,7 @@ async function deleteAccount() {
 		<h1>O Seu Perfil</h1>
 
 		<div v-if="user">
-			<img :src="user.profilepic" alt="pfp" class="pfp" />
+			<img: src="projeto programação\src\assets\imagens\PFP.png" alt="pfp" class="pfp" />
 
 			<p><strong>Email:</strong> {{ user.email }}</p>
 			<p><strong>Role:</strong> {{ user.role }}</p>
