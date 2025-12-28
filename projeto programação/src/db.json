@@ -104,6 +104,23 @@
       "lembretes": [],
       "eventosCalendario": [],
       "id": 4
+    },
+    {
+      "email": "GuilhermelSampaio2006@gmail.com",
+      "password": "DeezNutz",
+      "role": "user",
+      "profilepic": "image",
+      "classes": [
+        "Programação Web",
+        "Computação Gráfica",
+        "Bases de Dados"
+      ],
+      "lvl": 2,
+      "exp": 0,
+      "streak": 0,
+      "lembretes": [],
+      "eventosCalendario": [],
+      "id": 5
     }
   ],
   "classes": [
