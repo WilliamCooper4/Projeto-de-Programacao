@@ -28,9 +28,11 @@ function toggleLogin() {
 }
 
 async function doLogin() {
+	console.log('TRY LOGIN')
 	var UserToLog= false
 	try {
 		for(let i=0; i < usersStore.users.length; i++){
+			console.log('TRY LOGIN2')
 			if(email.value == usersStore.users[i].email && password.value == usersStore.users[i].password){
 				auth.login(usersStore.users[i])
 				UserToLog = true
@@ -55,7 +57,7 @@ function logout() {
 	router.push('/') // redireciona para a página principal
 }
 
-function adduser() {
+async function adduser() {
 	var fail = false
 	try {
 		if(!email.value || !password.value || !Cemail.value || !Cpassword.value){
@@ -82,9 +84,10 @@ function adduser() {
 	}
 	if(!fail){
 		console.log('USER ADDED')
-		usersStore.addUser(email.value, password.value)
-		resetForm()
+		await usersStore.addUser(email.value, password.value)
 		doLogin()
+		resetForm()
+	
 	}
 }
 
