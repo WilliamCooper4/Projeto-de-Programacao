@@ -140,8 +140,9 @@ function resetForm() {
 			<button v-if="showRegister" class="btn btn-secondary w-100 rounded-pill mb-3" @click="showRegister = false" >Voltar</button>
 		</div>
 	</div>
-
-	<router-view/>
+	<div class="inside-app">
+		<router-view/>
+	</div>
 </template>
 
 <style scoped>

@@ -46,7 +46,7 @@ nav a:hover:not(.login-btn) {
 	text-decoration: underline;
 }
 
-#app {
+.inside-app {
 	padding: 20px;
 }
 
