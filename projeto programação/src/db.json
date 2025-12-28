@@ -5,7 +5,7 @@
       "email": "myemail@gmail.com",
       "password": "password",
       "role": "admin",
-      "profilepic": "/pfps/user.png",
+      "profilepic": "src\\assets\\imagens\\mario1.jpg",
       "classes": [
         "Computação Gráfica",
         "Programação Web",
@@ -33,7 +33,7 @@
       "email": "123@esmad.ipp.pt",
       "password": "1234",
       "role": "user",
-      "profilepic": "/pfps/user.png",
+      "profilepic": "src\\assets\\imagens\\Sea-turtle.png",
       "classes": [
         "Sistemas Computacionais",
         "Programação Web",
@@ -80,24 +80,13 @@
       "id": 2
     },
     {
-      "email": "jeff",
-      "password": "jeff",
-      "role": "user",
-      "profilepic": "image",
-      "classes": [],
-      "lvl": 1,
-      "exp": 0,
-      "streak": 0,
-      "lembretes": [],
-      "eventosCalendario": [],
-      "id": 3
-    },
-    {
       "email": "tav",
       "password": "tav",
-      "role": "user",
-      "profilepic": "image",
-      "classes": [],
+      "role": "admin",
+      "profilepic": "src\\assets\\imagens\\Sea-turtle.png",
+      "classes": [
+        "Bases de Dados"
+      ],
       "lvl": 1,
       "exp": 0,
       "streak": 0,

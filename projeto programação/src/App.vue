@@ -107,7 +107,7 @@ function resetForm() {
 		<router-link to="/">Princípio</router-link>
 		<router-link v-if="auth.isLoggedIn" to="/Dis">Disciplinas</router-link>
 		<a href="#">Calendário</a>
-		<router-link v-if="auth.isLoggedIn" to="/User">Utilizador</router-link>
+		<router-link v-if="auth.isLoggedIn" to="/User"><img :src="auth.user?.profilepic" alt="SmallPfp" width="50px" class="SmallPfp"/> {{auth.user?.email}}</router-link>
 		<button v-if="!auth.isLoggedIn" class="login-btn" id="Log" @click="toggleLogin" > Login </button>
 		<button v-else class="login-btn" id="Log" @click="logout" > Logout </button>
 	</nav>
