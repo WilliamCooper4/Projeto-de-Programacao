@@ -32,9 +32,32 @@ const attributes = ref([
   },
 ]);
 
+const a = ref([
+  {
+    dot: "red",
+    dates: {
+      start: new Date(2026, 1, 7),
+      repeat: {
+        every: [1, 'weeks'],
+        weekdays: 4,
+      },
+    },
+    popover: {
+      label: 'Aula Prática',
+    },
+  },
+  {
+    dot: "red",
+    dates: new Date(2026, 1, 14),
+    popover: {
+      label: 'Entrega de Trabalho Final',
+    },
+  },
+]);
+
 </script>
 <template>
-  <Calendar :attributes="attributes" />
+  <Calendar :attributes="a" />
 </template>
 
 
