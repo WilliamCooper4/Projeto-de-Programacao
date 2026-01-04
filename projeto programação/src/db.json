@@ -116,6 +116,7 @@
       "id": 0,
       "name": "Programação Web",
       "description": "Lorem Ipsum dolor sit amet, bla bla bla et cetera",
+      "color": "#1E90FF",
       "exercises": [
         {
           "id": 0,
@@ -148,12 +149,33 @@
           "link": "https://youtu.be/bleEztMsSDk"
         }
       ],
-      "calendar":[]
+      "calendar": [
+        {
+          "id": 0,
+          "titulo": "Aula Teórica",
+          "data": "2026-02-07T10:00:00"
+        },
+        {
+          "id": 1,
+          "titulo": "Entrega Projeto 1",
+          "data": "2026-03-15T23:59:00"
+        },
+        {
+          "id": 2,
+          "titulo": "Prática Semanal",
+          "start": "2026-02-12",
+          "repeat": {
+            "every": [1, "weeks"],
+            "weekdays": 4
+          }
+        }
+      ]
     },
     {
       "id": 1,
       "name": "Computação Gráfica",
       "description": "abcdefghijklmnopqrstuvwxyz",
+      "color": "#FF6347",
       "exercises": [
         {
           "id": 0,
@@ -191,12 +213,24 @@
           "link": "https://www.youtube.com/watch?v=jNQXAC9IVRw&vl=en"
         }
       ],
-      "calendar":[]
+      "calendar": [
+        {
+          "id": 0,
+          "titulo": "Seminário Three.js",
+          "data": "2026-02-20"
+        },
+        {
+          "id": 1,
+          "titulo": "Entrega Projeto CG",
+          "data": "2026-03-22T23:59:00"
+        }
+      ]
     },
     {
       "id": 2,
       "name": "Bases de Dados",
       "description": "isto é só uma cópia da programação web para mostrar que funciona",
+      "color": "#3CB371",
       "exercises": [
         {
           "id": 0,
@@ -229,7 +263,26 @@
           "link": "https://youtu.be/bleEztMsSDk"
         }
       ],
-      "calendar":[]
+      "calendar": [
+        {
+          "id": 0,
+          "titulo": "Laboratório de SQL",
+          "data": "2026-02-10T14:00:00"
+        },
+        {
+          "id": 1,
+          "titulo": "Teste Intercalar",
+          "data": "2026-03-05"
+        },
+        {
+          "id": 2,
+          "titulo": "Reunião de Projeto",
+          "start": "2026-01-28",
+          "repeat": {
+            "every": [2, "weeks"]
+          }
+        }
+      ]
     }
   ]
 }
