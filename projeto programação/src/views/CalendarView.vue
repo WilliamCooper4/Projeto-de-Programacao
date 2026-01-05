@@ -133,4 +133,5 @@ const mergedAttributes = computed(() => {
     margin: 2rem auto;
   }
 
+
 </style>
