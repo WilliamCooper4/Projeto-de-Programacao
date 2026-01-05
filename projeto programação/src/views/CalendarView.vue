@@ -15,7 +15,7 @@ const selectedClassIds = ref([]);
 onMounted(async () => {
   await classesStore.fetchClasses();
   if (classesStore.classes.length && selectedClassIds.value.length === 0) {
-    selectedClassIds.value = [classesStore.classes[0].id];
+    selectedClassIds.value = [String(classesStore.classes[0].id)];
   }
 });
 
@@ -30,7 +30,7 @@ const allSelected = computed({
     return classesStore.classes.length > 0 && selectedClassIds.value.length === classesStore.classes.length;
   },
   set(val) {
-    if (val) selectedClassIds.value = classesStore.classes.map(c => c.id);
+    if (val) selectedClassIds.value = classesStore.classes.map(c => String(c.id));
     else selectedClassIds.value = [];
   }
 });
@@ -39,18 +39,20 @@ function toggleSelectAll() {
   if (selectedClassIds.value.length === classesStore.classes.length) {
     selectedClassIds.value = [];
   } else {
-    selectedClassIds.value = classesStore.classes.map(c => c.id);
+    selectedClassIds.value = classesStore.classes.map(c => String(c.id));
   }
 }
-
-function parseEventDate(Date) {
-  if (Date === undefined || Date === null) return null;
-  //código para datas simples
-  if (typeof Date === 'string') return new Date(Date); 
-  //código para datas com repeeat
-  if (typeof Date === 'object') {
-    if (Date.start) return new Date(Date.start);
-    if (Date.date) return typeof Date.date === 'number' ? (Date.date > 1e12 ? new Date(Date.date) : new Date(Date.date * 1000)) : new Date(Date.date);
+function logState(label) {
+  console.log(label, 'allSelected=', allSelected.value, 'selectedClassIds=', selectedClassIds.value);
+}
+function parseEventDate(input) {
+  if (input === undefined || input === null) return null;
+  // código para datas simples
+  if (typeof input === 'string') return new Date(input);
+  // código para datas com repeat
+  if (typeof input === 'object') {
+    if (input.start) return new Date(input.start);
+    if (input.date) return typeof input.date === 'number' ? (input.date > 1e12 ? new Date(input.date) : new Date(input.date * 1000)) : new Date(input.date);
   }
   return null;
 }
@@ -99,12 +101,12 @@ const mergedAttributes = computed(() => {
     <div class="class-picker">
     <p>Escolher Disciplinas:</p>
     <label style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.5rem;">
-      <input type="checkbox" v-model="allSelected" />
+      <input type="checkbox" v-model="allSelected" @change="logState('allSelected')" />
       <strong>Selecionar todos</strong>
-    </label>
+    </label>"
 
     <label v-for="cls in classesStore.classes" :key="cls.id" style="display:flex;gap:0.5rem;align-items:center;">
-      <input type="checkbox" :value="cls.id" v-model="selectedClassIds" />
+      <input type="checkbox" :value="String(cls.id)" v-model="selectedClassIds" @change="logState(cls.id)" />
       <span>{{ cls.name }}</span>
     </label>
   </div>

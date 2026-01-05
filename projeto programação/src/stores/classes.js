@@ -24,7 +24,8 @@ export const useClassesStore = defineStore('classes', {
 			return this.classes.find(c => c.name === name)
 		},
 		getClassById(id) {
-			return this.classes.find(c => c.id === id)
+			// Ensure we match both number and string IDs (some views store ids as strings)
+			return this.classes.find(c => String(c.id) === String(id))
 		},
 
 		async addClass(newClass) {
