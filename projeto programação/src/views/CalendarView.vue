@@ -52,7 +52,7 @@ function parseEventDate(input) {
   // código para datas com repeat
   if (typeof input === 'object') {
     if (input.start) return new Date(input.start);
-    if (input.date) return typeof input.date === 'number' ? (input.date > 1e12 ? new Date(input.date) : new Date(input.date * 1000)) : new Date(input.date);
+    
   }
   return null;
 }
@@ -109,6 +109,7 @@ const mergedAttributes = computed(() => {
       <input type="checkbox" :value="String(cls.id)" v-model="selectedClassIds" @change="logState(cls.id)" />
       <span>{{ cls.name }}</span>
     </label>
+    <Calendar class="cal" :attributes="mergedAttributes"  view="weekly"/>
   </div>
 
 
