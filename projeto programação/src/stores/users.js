@@ -26,7 +26,7 @@ export const useUsersStore = defineStore('users', {
 				email: userEmail,
 				password: userPassword,
 				role: 'user',
-				profilepic: 'image',
+				profilepic: "src\\assets\\imagens\\mario1.jpg",
 				classes: [],
 				lvl: 1,
 				exp: 0,

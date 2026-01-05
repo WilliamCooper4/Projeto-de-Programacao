@@ -85,10 +85,13 @@
       "role": "admin",
       "profilepic": "src\\assets\\imagens\\Sea-turtle.png",
       "classes": [
-        "Bases de Dados"
+        "Programação Web",
+        "Computação Gráfica",
+        "Bases de Dados",
+        "ola"
       ],
-      "lvl": 1,
-      "exp": 0,
+      "lvl": 3,
+      "exp": 21,
       "streak": 0,
       "lembretes": [],
       "eventosCalendario": [],
@@ -109,6 +112,19 @@
       "lembretes": [],
       "eventosCalendario": [],
       "id": 5
+    },
+    {
+      "email": "jeff",
+      "password": "jeff",
+      "role": "user",
+      "profilepic": "src\\assets\\imagens\\mario1.jpg",
+      "classes": [],
+      "lvl": 1,
+      "exp": 0,
+      "streak": 0,
+      "lembretes": [],
+      "eventosCalendario": [],
+      "id": 6
     }
   ],
   "classes": [
@@ -168,7 +184,10 @@
           "titulo": "Prática Semanal",
           "start": "2026-02-12",
           "repeat": {
-            "every": [1, "weeks"],
+            "every": [
+              1,
+              "weeks"
+            ],
             "weekdays": 4
           }
         }
@@ -287,7 +306,10 @@
           "titulo": "Reunião de Projeto",
           "start": "2026-01-28",
           "repeat": {
-            "every": [2, "weeks"],
+            "every": [
+              2,
+              "weeks"
+            ],
             "weekdays": 4
           }
         }
