@@ -103,7 +103,7 @@ const mergedAttributes = computed(() => {
     <label style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.5rem;">
       <input type="checkbox" v-model="allSelected" @change="logState('allSelected')" />
       <strong>Selecionar todos</strong>
-    </label>"
+    </label>
 
     <label v-for="cls in classesStore.classes" :key="cls.id" style="display:flex;gap:0.5rem;align-items:center;">
       <input type="checkbox" :value="String(cls.id)" v-model="selectedClassIds" @change="logState(cls.id)" />
