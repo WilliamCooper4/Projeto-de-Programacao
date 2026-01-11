@@ -8,18 +8,14 @@ const auth = useAuthStore()
 const user = computed(() => auth.user)
 
 // barra de XP animada
-const xpBarWidth = ref(0)
+const xpBarWidth = computed(() => {
+	if (!user.value) return 0
+	return user.value.exp % 100
+})
 
-// atualizar barra quando experiência muda
-if (user.value) {
-	xpBarWidth.value = Math.min(100, (user.value.exp % 100)) // cada 100 exp = nível
-}
-
-// função para dar XP
 function giveXP(amount = 10) {
 	if (!user.value) return
 	auth.addExp(amount)
-	xpBarWidth.value = Math.min(100, (user.value.exp % 100))
 }
 
 // apagar conta
@@ -35,7 +31,7 @@ async function deleteAccount() {
 		<h1>O Seu Perfil</h1>
 
 		<div v-if="user">
-			<img: src="projeto programação\src\assets\imagens\PFP.png" alt="pfp" class="pfp" />
+			<img :src="user.profilepic" alt="pfp" class="pfp" />
 
 			<p><strong>Email:</strong> {{ user.email }}</p>
 			<p><strong>Role:</strong> {{ user.role }}</p>
@@ -86,14 +82,18 @@ async function deleteAccount() {
 	color: #128;
 	margin-top: 2rem;
 	margin-left: 5rem;
+	max-width: 900px;
 }
 
 .pfp {
 	max-height: 8rem;
+	margin-bottom: 1rem;
 }
 
+/* barra XP */
 .xp-bar-background {
 	width: 40rem;
+	max-width: 100%;
 	height: 1.5rem;
 	background-color: #abf8f0;
 	border-radius: 10px;
@@ -105,12 +105,38 @@ async function deleteAccount() {
 .xp-bar-fill {
 	height: 100%;
 	background-color: #47a;
-	width: 0;
 	transition: width 0.5s ease;
-	outline: #128 solid;
 }
 
 .login-btn {
 	margin-top: 0.5rem;
+}
+
+/* responsivo */
+@media (max-width: 900px) {
+	.title {
+		margin-left: 2rem;
+		margin-right: 2rem;
+	}
+}
+
+@media (max-width: 600px) {
+	.title {
+		margin-left: 1rem;
+		margin-right: 1rem;
+		text-align: center;
+	}
+
+	.pfp {
+		max-height: 6rem;
+	}
+
+	.xp-bar-background {
+		height: 1.2rem;
+	}
+
+	.login-btn {
+		width: 100%;
+	}
 }
 </style>

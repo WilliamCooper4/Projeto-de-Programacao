@@ -26,8 +26,8 @@ nav {
   /* Mais espaço entre itens */
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
-  /* Torna o texto maior */
+  font-size: 1.2rem; /* Torna o texto maior */
+
 }
 
 /* Links normais */

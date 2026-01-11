@@ -50,7 +50,7 @@ function selectClass(cls) {
 // xp
 function giveXP(amount = 10) {
 	if (!auth.user) return
-	auth.addExp(amount)  // assume que tens uma função na authStore para isso
+	auth.addExp(amount)
 }
 </script>
 
@@ -128,19 +128,30 @@ function giveXP(amount = 10) {
 .page-layout {
 	display: flex;
 	align-items: flex-start;
-	margin-top: 6.45rem; /* altura navbar */
+	margin-top: 6.45rem;
+	min-height: calc(100vh - 6.45rem);
+	flex-wrap: wrap; /* para telemovel */
 }
 
 .page-content {
 	flex: 1;
 	padding: 1rem;
+	min-width: 250px;
+	box-sizing: border-box;
+	overflow-wrap: break-word;
 }
 
 .side-bar {
 	width: 17%;
+	min-width: 200px;
 	background-color: #47a;
 	border-right: 0.2rem solid #128;
 	padding: 1rem;
+	box-sizing: border-box;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	overflow-y: auto;
 }
 
 .side-bar ul {
@@ -154,7 +165,7 @@ function giveXP(amount = 10) {
 	cursor: pointer;
 	color: white;
 	transition: background 0.2s;
-	background-color: transparent; /* cor padrão */
+	background-color: transparent;
 }
 
 .side-bar ul li:hover {
@@ -176,7 +187,8 @@ function giveXP(amount = 10) {
 	padding: 1.5rem;
 	border: solid #128;
 	border-radius: 2rem;
-	width: 25%;
+	width: 400px;
+	max-width: 400px;
 }
 
 .modal-box ul {
@@ -188,5 +200,43 @@ function giveXP(amount = 10) {
 	display: flex;
 	justify-content: space-between;
 	margin-top: 1rem;
+}
+
+/* responsivo */
+@media (max-width: 900px) {
+	.page-layout {
+		flex-direction: column;
+		margin-top: 0;
+		gap: 1rem;
+	}
+
+	.side-bar {
+		position: static;
+		width: 100%;
+		border-right: none;
+		border-bottom: 0.2rem solid #128;
+		padding: 1rem;
+		height: auto;
+		margin-bottom: 0;
+	}
+
+	.page-content {
+		left: 0;
+		width: 100%;
+		padding-top: 5rem;
+		box-sizing: border-box;
+	}
+}
+
+@media (max-width: 1025px) {
+	.modal-box {
+		width: 90%;
+	}
+}
+
+@media (max-width: 500px) {
+	.side-bar ul li {
+		font-size: 0.9rem;
+	}
 }
 </style>
