@@ -3,7 +3,6 @@
 </template>
 
 <style scoped>
-/* limit width of this specific modal to make it appear smaller */
 #loginModal .modal-dialog {
   max-width: 420px;
   margin: 1.75rem auto;
