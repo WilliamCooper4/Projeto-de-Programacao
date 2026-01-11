@@ -59,31 +59,46 @@ function logout() {
 }
 
 async function adduser() {
-  var fail = false;
-  try {
-    if (!email.value || !password.value || !Cemail.value || !Cpassword.value) {
-      throw new Error("Por favor, preencha todos os campos.");
-    } else if (password.value != Cpassword.value) {
-      throw new Error("As senhas não coincidem.");
-    } else if (email.value != Cemail.value) {
-      throw new Error("Os emails não coincidem.");
-    }
+	let fail = false
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-    for (let i = 0; i < usersStore.users.length; i++) {
-      if (email.value == usersStore.users[i].email) {
-        throw new Error("Utilizador já existe.");
-      }
-    }
-  } catch (err) {
-    fail = true;
-    error.value = err.message;
-  }
-  if (!fail) {
-    console.log("USER ADDED");
-    await usersStore.addUser(email.value, password.value);
-    doLogin();
-    resetForm();
-  }
+	try {
+		if (!email.value || !password.value || !Cemail.value || !Cpassword.value) {
+			throw new Error("Por favor, preencha todos os campos.")
+		}
+
+		if (!emailRegex.test(email.value)) {
+			throw new Error("Email inválido.")
+		}
+
+		if (password.value.length < 5) {
+			throw new Error("A senha deve ter pelo menos 5 caracteres.")
+		}
+
+		if (password.value !== Cpassword.value) {
+			throw new Error("As senhas não coincidem.")
+		}
+
+		if (email.value !== Cemail.value) {
+			throw new Error("Os emails não coincidem.")
+		}
+
+		for (let i = 0; i < usersStore.users.length; i++) {
+			if (email.value === usersStore.users[i].email) {
+				throw new Error("Utilizador já existe.")
+			}
+		}
+	} catch (err) {
+		fail = true
+		error.value = err.message
+	}
+
+	if (!fail) {
+		console.log("USER ADDED")
+		await usersStore.addUser(email.value, password.value)
+		doLogin()
+		resetForm()
+	}
 }
 
 function resetForm() {
