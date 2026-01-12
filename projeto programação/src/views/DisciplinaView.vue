@@ -11,13 +11,16 @@ const auth = useAuthStore()
 const classesStore = useClassesStore()
 const usersStore = useUsersStore()
 
-var booktest = GetBook("OL17618370W.json")
-
-console.log(booktest)
+const booktest = ref(null)
 
 onMounted(async () => {
+  // existing onMounted work
   await classesStore.fetchClasses();
   await usersStore.fetchUsers();
+
+  // fetch the book and store the object
+  booktest.value = await GetBook("OL17618370W.json")
+  console.log(booktest.value)
 });
 
 const showClassPicker = ref(false);
@@ -141,7 +144,8 @@ function giveXP(amount = 10) {
 						</li>
 					</ul>
 					<h2>Livros</h2>
-					<p>{{ booktest }}</p>
+					<p v-if="booktest">{{ booktest.title }}</p>
+					<p v-else>Carregando livro...</p>
 			</div>
 		</div>
 	</main>
