@@ -7,6 +7,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import "./assets/style.css"
 import { onMounted } from 'vue'
 import { setupCalendar } from 'v-calendar';
+import 'https://openlibrary.org/search.json';
 
 
 const app = createApp(App)
