@@ -3,6 +3,7 @@ import DisciplinaView from '@/views/DisciplinaView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import AdminView from '@/views/AdminView.vue'
 import CalendarView from '@/views/CalendarView.vue'
+import DisciplinaEditView from '@/views/DisciplinaEditView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -17,6 +18,11 @@ const router = createRouter({
 			path: "/Dis",
 			name: "Disciplina",
 			component: DisciplinaView
+		},
+		{
+			path: "/EDis",
+			name: "Editar Disciplina",
+			component: DisciplinaEditView
 		},
 		{
 			path: "/User",
