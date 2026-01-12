@@ -8,7 +8,6 @@ import "./assets/style.css"
 import { onMounted } from 'vue'
 import { setupCalendar } from 'v-calendar';
 
-
 const app = createApp(App)
 
 // Use calendar defaults (optional)

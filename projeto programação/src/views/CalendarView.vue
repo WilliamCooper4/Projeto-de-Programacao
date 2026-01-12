@@ -112,6 +112,10 @@ const mergedAttributes = computed(() => {
     <Calendar class="cal" :attributes="mergedAttributes"  view="weekly"/>
   </div>
 
+   <DxList 
+     :scrollingEnabled="false"
+   />
+
 
 	</aside>
   <main class="main-content">
