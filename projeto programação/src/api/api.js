@@ -1,5 +1,6 @@
 // URL base do JSON Server (alterar conforme necessário)
 const BASE_URL = 'http://localhost:3000'
+const openlibraryBaseURL = 'https://openlibrary.org/search.json'
 
 // Função auxiliar para pedidos HTTP genéricos
 // Centraliza headers e tratamento de resposta

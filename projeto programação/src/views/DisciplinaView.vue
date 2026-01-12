@@ -4,10 +4,16 @@ import { ref, computed, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useClassesStore } from '@/stores/classes'
 import { useUsersStore } from '@/stores/users'
+import "@/api/openlibrary.js"
+import { GetBook } from "@/api/openlibrary.js"
 
 const auth = useAuthStore()
 const classesStore = useClassesStore()
 const usersStore = useUsersStore()
+
+var booktest = GetBook("OL17618370W.json")
+
+console.log(booktest)
 
 onMounted(async () => {
 	await classesStore.fetchClasses()
@@ -119,6 +125,8 @@ function giveXP(amount = 10) {
 							<a :href="res.link" target="_blank" @click.prevent="giveXP(3)">{{ res.nome }}</a>
 						</li>
 					</ul>
+					<h2>Livros</h2>
+					<p>{{ booktest }}</p>
 			</div>
 		</div>
 	</main>
