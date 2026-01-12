@@ -12,9 +12,12 @@ body{
 .page-content{
     position: relative;
     top: -5em;
-    left: 20%;
+    margin-left: 20%;
     width: 75%;
-    color:black
+    max-width: 100%;
+    color: black;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .side-bar{
