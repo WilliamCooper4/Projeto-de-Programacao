@@ -241,6 +241,9 @@ body {
 
 /* Barra de navegação */
 nav {
+	position:sticky;
+	top: 0;
+	z-index: 2000;
 	background: #47a;
 	border-bottom: 0.2rem solid #112288;
 	padding: 2rem 3rem;
