@@ -15,4 +15,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server: {
+    proxy: {
+      '/api/openlibrary': {
+        target: 'https://openlibrary.org/works',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/openlibrary/, '')
+      }
+    }
+  }
 })

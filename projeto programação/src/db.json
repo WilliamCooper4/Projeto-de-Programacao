@@ -90,7 +90,7 @@
         "Bases de Dados"
       ],
       "lvl": 3,
-      "exp": 21,
+      "exp": 27,
       "streak": 0,
       "lembretes": [],
       "eventosCalendario": [],
@@ -165,8 +165,8 @@
         }
       ],
       "books": [
-          "OL17618370W.json"
-        ],
+        "OL17618370W.json"
+      ],
       "calendar": [
         {
           "id": 0,
@@ -238,8 +238,8 @@
         }
       ],
       "books": [
-          "OL17618370W.json"
-        ],
+        "OL262463W.json"
+      ],
       "calendar": [
         {
           "id": 0,
@@ -293,8 +293,9 @@
         }
       ],
       "books": [
-          "OL17618370W.json"
-        ],
+        "OL60631287M.json",
+        "OL262463W.json"
+      ],
       "calendar": [
         {
           "id": 0,

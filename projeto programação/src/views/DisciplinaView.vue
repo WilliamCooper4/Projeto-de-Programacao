@@ -11,17 +11,32 @@ const auth = useAuthStore()
 const classesStore = useClassesStore()
 const usersStore = useUsersStore()
 
-const booktest = ref(null)
+const booksDetails = ref([])
+const booksLoading = ref(false)
 
 onMounted(async () => {
   // existing onMounted work
   await classesStore.fetchClasses();
   await usersStore.fetchUsers();
 
-  // fetch the book and store the object
-  booktest.value = await GetBook("OL17618370W.json")
-  console.log(booktest.value)
+  // select first class for the user (if any) and load its books
+  selectedClass.value = userClasses.value[0] || null
+  if (selectedClass.value) await loadBooksForClass(selectedClass.value)
 });
+
+async function loadBooksForClass(cls) {
+  booksDetails.value = []
+  if (!cls || !cls.books || cls.books.length === 0) return
+  booksLoading.value = true
+  try {
+    const results = await Promise.all(cls.books.map(b => GetBook(b)))
+    booksDetails.value = results.filter(Boolean)
+  } catch (err) {
+    console.error('Erro ao carregar livros da disciplina:', err)
+  } finally {
+    booksLoading.value = false
+  }
+}
 
 const showClassPicker = ref(false);
 const selectedClasses = ref([]);
@@ -52,8 +67,9 @@ const userClasses = computed(() => {
 
 const selectedClass = ref(userClasses.value[0] || null);
 
-function selectClass(cls) {
+async function selectClass(cls) {
   selectedClass.value = cls;
+  await loadBooksForClass(cls);
 }
 
 // xp
@@ -144,8 +160,15 @@ function giveXP(amount = 10) {
 						</li>
 					</ul>
 					<h2>Livros</h2>
-					<p v-if="booktest">{{ booktest.title }}</p>
-					<p v-else>Carregando livro...</p>
+				<ul v-if="booksLoading">
+					<li>Carregando livros...</li>
+				</ul>
+				<ul v-else-if="booksDetails.length">
+					<li v-for="(b, idx) in booksDetails" :key="idx">
+						<a :href="b.key ? `https://openlibrary.org${b.key}` : '#'" target="_blank">{{ b.title || (b.works && b.works[0] && b.works[0].title) || 'Sem título' }}</a>
+					</li>
+				</ul>
+				<p v-else>Sem livros nesta disciplina</p>
 			</div>
 		</div>
 	</main>
