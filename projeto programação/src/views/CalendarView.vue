@@ -97,7 +97,7 @@ const mergedAttributes = computed(() => {
 </script>
 
 <template>
-  <aside class="side-bar">
+<aside class="side-bar">
 				<h3>Disciplinas</h3>
 				<div class="class-picker">
     <label style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.5rem;">
@@ -117,7 +117,7 @@ const mergedAttributes = computed(() => {
    />-->
 
 
-	</aside>
+</aside>
   <main class="main-content">
     <Calendar class="cal" :attributes="mergedAttributes" expanded=""/>
   </main>
