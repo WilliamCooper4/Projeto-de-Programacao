@@ -98,7 +98,7 @@ const mergedAttributes = computed(() => {
 
 <template>
 <aside class="side-bar">
-				<h3>Disciplinas</h3>
+				<h3>Disciplinas:</h3>
 				<div class="class-picker">
     <label style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.5rem;">
       <input type="checkbox" v-model="allSelected" @change="logState('allSelected')" />

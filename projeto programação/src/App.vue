@@ -241,6 +241,8 @@ body {
 
 /* Barra de navegação */
 nav {
+	position: sticky;
+	top: 0;
 	background: #47a;
 	border-bottom: 0.2rem solid #112288;
 	padding: 2rem 3rem;
@@ -249,6 +251,7 @@ nav {
 	justify-content: center;
 	align-items: center;
 	font-size: 1.2rem;
+	z-index: 100;
 }
 
 /* Links normais */
