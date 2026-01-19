@@ -86,7 +86,14 @@ function selectUser(user) {
         <h2>Detalhes do Utilizador</h2>
         <p>Nome de utilizador: {{ selecteduser.username }}</p>
         <p>Email: {{ selecteduser.email }}</p>
-        <p>Role: {{ selecteduser.role }}</p>
+        <p>Role: <select
+              :value="selecteduser.role"
+              @change="changeRole(selecteduser, $event.target.value)"
+            >
+              <option value="user">user</option>
+              <option value="admin">admin</option>
+            </select></p>
+            <button @click="deleteUser(selecteduser.id)">Apagar</button>
       </div>
       <div v-if="!selecteduser">
         <h2>Nenhum utilizador selecionado</h2>
