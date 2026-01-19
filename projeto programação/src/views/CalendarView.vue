@@ -13,7 +13,9 @@ const classesStore = useClassesStore();
 const selectedClassIds = ref([]);
 
 onMounted(async () => {
-  await classesStore.fetchClasses();
+  if (classesStore.classes.length === 0) {
+    await classesStore.fetchClasses();
+  }
   if (classesStore.classes.length && selectedClassIds.value.length === 0) {
     selectedClassIds.value = [String(classesStore.classes[0].id)];
   }

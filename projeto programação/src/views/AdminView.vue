@@ -11,8 +11,12 @@ const classesStore = useClassesStore();
 const usersStore = useUsersStore();
 
 onMounted(() => {
-  usersStore.fetchUsers();
-  classesStore.fetchClasses();
+  if (usersStore.users.length === 0) {
+    usersStore.fetchUsers();
+  }
+  if (classesStore.classes.length === 0) {
+    classesStore.fetchClasses();
+  }
 });
 
 function changeRole(user, newRole) {
@@ -27,6 +31,8 @@ function deleteUser(userId) {
 const newClassName = ref("");
 const newClassDesc = ref("");
 const selecteduser = ref(null);
+const showClassPicker = ref(false);
+const selectedClasses = ref([]);
 async function createClass() {
   if (!newClassName.value) return;
 
@@ -47,6 +53,23 @@ function deleteClass(id) {
 
 function selectUser(user) {
   selecteduser.value = user;
+}
+
+function openCloseClassPicker() {
+  if (!selecteduser.value) return;
+  showClassPicker.value = !showClassPicker.value;
+  if (showClassPicker.value) selectedClasses.value = [...selecteduser.value.classes];
+}
+
+async function saveClasses() {
+  if (!selecteduser.value) return;
+
+  selecteduser.value.classes = [...selectedClasses.value];
+
+  // persistir na base de dados
+  await usersStore.updateUser(selecteduser.value);
+
+  showClassPicker.value = false;
 }
 
 </script>
@@ -85,6 +108,9 @@ function selectUser(user) {
               <option value="admin">admin</option>
             </select></p>
             <button @click="deleteUser(selecteduser.id)">Apagar</button>
+            <button class="btn btn-secondary rounded-pill mb-1" @click="openCloseClassPicker">
+              Editar Disciplinas
+            </button>
       </div>
       <div v-if="!selecteduser">
         <h2>Nenhum utilizador selecionado</h2>
@@ -93,6 +119,41 @@ function selectUser(user) {
     </div>
     <div v-else class="title">
       <h1>É preciso ser administrador para ver esta página.</h1>
+    </div>
+
+    <!-- class picker modal -->
+    <div v-if="showClassPicker" class="modal-back">
+      <div class="modal-box">
+        <h2 style="text-align: center">Escolher Disciplinas</h2>
+
+        <ul>
+          <li v-for="cls in classesStore.classes" :key="cls.id">
+            <label>
+              <input
+                type="checkbox"
+                :value="cls.name"
+                v-model="selectedClasses"
+              />
+              {{ cls.name }}
+            </label>
+          </li>
+        </ul>
+
+        <div class="actions">
+          <button
+            class="login-btn"
+            @click="
+              saveClasses();
+              openCloseClassPicker();
+            "
+          >
+            Guardar
+          </button>
+          <button class="login-btn" @click="openCloseClassPicker">
+            Cancelar
+          </button>
+        </div>
+      </div>
     </div>
   </body>
 </template>
@@ -144,6 +205,36 @@ input {
   padding: 0.4rem;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.modal-back {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: #47a;
+  padding: 1.5rem;
+  border: solid #128;
+  border-radius: 2rem;
+  width: 400px;
+  max-width: 400px;
+}
+
+.modal-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
 }
 
 /* responsivo */

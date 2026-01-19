@@ -15,9 +15,13 @@ const booksDetails = ref([])
 const booksLoading = ref(false)
 
 onMounted(async () => {
-  // existing onMounted work
-  await classesStore.fetchClasses();
-  await usersStore.fetchUsers();
+  // Only fetch if data is not already loaded to prevent resetting changes
+  if (classesStore.classes.length === 0) {
+    await classesStore.fetchClasses();
+  }
+  if (usersStore.users.length === 0) {
+    await usersStore.fetchUsers();
+  }
 
   // select first class for the user (if any) and load its books
   selectedClass.value = userClasses.value[0] || null
@@ -170,7 +174,7 @@ function giveXP(amount = 10) {
 				</ul>
 				<ul v-else-if="booksDetails.length">
 					<li v-for="(b, idx) in booksDetails" :key="idx">
-						<a :href="b.key ? `https://openlibrary.org${b.key}` : '#'" target="_blank">{{ b.title || (b.works && b.works[0] && b.works[0].title) || 'Sem título' }}</a>
+						<a @click="giveXP(50)" :href="b.key ? `https://openlibrary.org${b.key}` : '#'" target="_blank">{{ b.title || (b.works && b.works[0] && b.works[0].title) || 'Sem título' }}</a>
 					</li>
 				</ul>
 				<p v-else>Sem livros nesta disciplina</p>

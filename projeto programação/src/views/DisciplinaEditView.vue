@@ -21,14 +21,27 @@ const newClassDesc = ref("");
 const editingExercises = ref(false);
 const editingResources = ref(false);
 const editingBooks = ref(false);
+const editingDescription = ref(false);
+const editingDates = ref(false);
 const newExercise = ref({ nome: "", link: "" });
 const newResource = ref({ nome: "", link: "", type: "doc" });
 const newBook = ref("");
+const editedDescription = ref("");
+const newDate = ref({ 
+  titulo: "", 
+  data: "", 
+  isRepeating: false, 
+  repeat: { every: [1, "weeks"], weekdays: 4 }
+});
 
 onMounted(async () => {
-  // existing onMounted work
-  await classesStore.fetchClasses();
-  await usersStore.fetchUsers();
+  // Only fetch if data is not already loaded to prevent resetting changes
+  if (classesStore.classes.length === 0) {
+    await classesStore.fetchClasses();
+  }
+  if (usersStore.users.length === 0) {
+    await usersStore.fetchUsers();
+  }
 
   // select first class for the user (if any) and load its books
   selectedClass.value = Classes.value[0] || null;
@@ -77,6 +90,8 @@ const selectedClass = ref(Classes.value[0] || null);
 
 async function selectClass(cls) {
   selectedClass.value = cls;
+  editedDescription.value = cls.description || "";
+  if (!cls.calendar) cls.calendar = [];
   await loadBooksForClass(cls);
 }
 
@@ -170,6 +185,86 @@ async function saveClass() {
   await classesStore.updateClass(selectedClass.value);
 }
 
+// Edit description
+function startEditingDescription() {
+  editingDescription.value = true;
+  editedDescription.value = selectedClass.value.description || "";
+}
+
+function saveDescription() {
+  if (selectedClass.value) {
+    selectedClass.value.description = editedDescription.value;
+    saveClass();
+    editingDescription.value = false;
+  }
+}
+
+function cancelEditingDescription() {
+  editingDescription.value = false;
+  editedDescription.value = "";
+}
+
+// Edit dates
+function addDate() {
+  if (!selectedClass.value || !newDate.value.titulo || 
+      (!newDate.value.data && !newDate.value.start)) return;
+  
+  if (!selectedClass.value.calendar) selectedClass.value.calendar = [];
+  
+  const id =
+    selectedClass.value.calendar.length > 0
+      ? Math.max(...selectedClass.value.calendar.map((d) => d.id)) + 1
+      : 0;
+  
+  const dateEntry = {
+    id,
+    color: "blue",
+    titulo: newDate.value.titulo,
+  };
+  
+  if (newDate.value.isRepeating && newDate.value.repeat) {
+    dateEntry.start = newDate.value.data;
+    dateEntry.repeat = newDate.value.repeat;
+  } else {
+    dateEntry.data = newDate.value.data;
+  }
+  
+  selectedClass.value.calendar.push(dateEntry);
+  saveClass();
+  newDate.value = { 
+    titulo: "", 
+    data: "", 
+    isRepeating: false, 
+    repeat: { every: [1, "weeks"], weekdays: 4 }
+  };
+}
+
+function deleteDate(id) {
+  if (!selectedClass.value) return;
+  selectedClass.value.calendar = selectedClass.value.calendar.filter(
+    (d) => d.id !== id,
+  );
+  saveClass();
+}
+
+function updateDate(id, titulo, data, isRepeating = false, repeat = null) {
+  if (!selectedClass.value) return;
+  const dateItem = selectedClass.value.calendar.find((d) => d.id === id);
+  if (dateItem) {
+    dateItem.titulo = titulo;
+    if (isRepeating) {
+      dateItem.start = data;
+      dateItem.repeat = repeat;
+      delete dateItem.data;
+    } else {
+      dateItem.data = data;
+      delete dateItem.start;
+      delete dateItem.repeat;
+    }
+    saveClass();
+  }
+}
+
 async function createClass() {
   if (!newClassName.value) return;
 
@@ -240,7 +335,28 @@ function deleteClass(id) {
       <div class="page-content" v-if="selectedClass">
         <h1>{{ selectedClass.name }}</h1>
 
-        <p>{{ selectedClass.description }}</p>
+        <!-- Description Section -->
+        <div class="description-section">
+          <div v-if="!editingDescription" class="description-view">
+            <p>{{ selectedClass.description || "Sem descrição" }}</p>
+            <button @click="startEditingDescription" class="edit-btn">
+              Editar Descrição
+            </button>
+          </div>
+          <div v-else class="description-edit">
+            <textarea
+              v-model="editedDescription"
+              placeholder="Descrição da disciplina"
+              class="description-textarea"
+            ></textarea>
+            <div class="description-actions">
+              <button @click="saveDescription" class="add-btn">Guardar</button>
+              <button @click="cancelEditingDescription" class="delete-btn">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
 
         <!-- Exercícios Section -->
         <div class="content-section">
@@ -364,6 +480,121 @@ function deleteClass(id) {
               placeholder="ISBN ou ID do livro (ex: OL17618370W.json)"
             />
             <button @click="addBook" class="add-btn">Adicionar</button>
+          </div>
+        </div>
+
+        <!-- Datas e Eventos Section -->
+        <div class="content-section">
+          <div class="section-header">
+            <h2>Datas e Eventos do Calendário</h2>
+            <button @click="editingDates = !editingDates" class="edit-btn">
+              {{ editingDates ? "Feito" : "Editar" }}
+            </button>
+          </div>
+
+          <ul v-if="selectedClass.calendar && selectedClass.calendar.length">
+            <li
+              v-for="dateItem in selectedClass.calendar"
+              :key="dateItem.id"
+              class="list-item date-item"
+            >
+              <div class="date-content">
+                <span v-if="!editingDates" class="date-display">
+                  <strong>{{ dateItem.titulo }}</strong>
+                  <span 
+                    v-if="dateItem.repeat" 
+                    class="badge badge-repeating"
+                  >
+                    Repetindo
+                  </span>
+                  <span 
+                    v-else 
+                    class="badge badge-normal"
+                  >
+                    Normal
+                  </span>
+                  <span class="date-value">
+                    {{ dateItem.data || dateItem.start }}
+                  </span>
+                  <span v-if="dateItem.repeat" class="repeat-info">
+                    (a cada {{ dateItem.repeat.every[0] }} {{ dateItem.repeat.every[1] }})
+                  </span>
+                </span>
+                <div v-else class="date-edit-inputs">
+                  <input
+                    :value="dateItem.titulo"
+                    @input="
+                      (e) => updateDate(dateItem.id, e.target.value, dateItem.data || dateItem.start, !!dateItem.repeat, dateItem.repeat)
+                    "
+                    placeholder="Nome do evento"
+                    class="date-input"
+                  />
+                  <input
+                    :value="dateItem.data || dateItem.start"
+                    type="date"
+                    @input="
+                      (e) => updateDate(dateItem.id, dateItem.titulo, e.target.value, !!dateItem.repeat, dateItem.repeat)
+                    "
+                    class="date-input"
+                  />
+                  <label class="checkbox-label">
+                    <input
+                      type="checkbox"
+                      :checked="!!dateItem.repeat"
+                      @change="
+                        (e) => updateDate(dateItem.id, dateItem.titulo, dateItem.data || dateItem.start, e.target.checked, dateItem.repeat)
+                      "
+                    />
+                    Repetindo
+                  </label>
+                </div>
+              </div>
+              <button
+                v-if="editingDates"
+                @click="deleteDate(dateItem.id)"
+                class="delete-btn"
+              >
+                ✕
+              </button>
+            </li>
+          </ul>
+          <p v-else>Sem datas adicionadas</p>
+
+          <div v-if="editingDates" class="add-form">
+            <input
+              v-model="newDate.titulo"
+              placeholder="Nome do evento (ex: Teste, Entrega de Trabalho)"
+            />
+            <input
+              v-model="newDate.data"
+              type="date"
+              placeholder="Data"
+            />
+            <label class="checkbox-label">
+              <input
+                v-model="newDate.isRepeating"
+                type="checkbox"
+              />
+              Este é um evento repetido?
+            </label>
+            <div v-if="newDate.isRepeating" class="repeat-inputs">
+              <label>
+                Repetir a cada:
+                <input
+                  v-model.number="newDate.repeat.every[0]"
+                  type="number"
+                  min="1"
+                  placeholder="1"
+                  class="repeat-input"
+                />
+                <select v-model="newDate.repeat.every[1]" class="repeat-select">
+                  <option value="days">dias</option>
+                  <option value="weeks">semanas</option>
+                  <option value="months">meses</option>
+                </select>
+              </label>
+            </div>
+            <button @click="addDate" class="add-btn">Adicionar Data</button>
           </div>
         </div>
         <button @click="deleteClass(selectedClass.id)" class="delete-btn">
@@ -569,6 +800,178 @@ aside {
 
 .add-btn:hover {
   background-color: #0a5;
+}
+
+/* Description Section Styles */
+.description-section {
+  margin-bottom: 2rem;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f9f9f9;
+}
+
+.description-view {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.description-view p {
+  flex: 1;
+  margin: 0;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.description-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.description-textarea {
+  padding: 0.75rem;
+  border: 1px solid #128;
+  border-radius: 0.3rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  min-height: 150px;
+  resize: vertical;
+}
+
+.description-textarea:focus {
+  outline: none;
+  border-color: #0a5;
+  box-shadow: 0 0 5px rgba(17, 136, 136, 0.3);
+}
+
+.description-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.description-actions button {
+  flex: 1;
+}
+
+/* Date Item Styles */
+.date-item {
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.date-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.date-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.date-value {
+  color: #666;
+  font-weight: normal;
+}
+
+.repeat-info {
+  color: #999;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+.badge-normal {
+  background-color: #128;
+}
+
+.badge-repeating {
+  background-color: #e74c3c;
+}
+
+.date-edit-inputs {
+  display: flex;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 300px;
+  align-items: center;
+}
+
+.date-input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: #128;
+  box-shadow: 0 0 5px rgba(17, 136, 136, 0.3);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.checkbox-label input[type="checkbox"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.repeat-inputs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: #f5f5f5;
+  border-radius: 0.3rem;
+  width: 100%;
+}
+
+.repeat-inputs label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.repeat-input {
+  width: 60px;
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.repeat-select {
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
 }
 
 /* responsivo */

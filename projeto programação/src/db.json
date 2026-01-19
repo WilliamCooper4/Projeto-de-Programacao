@@ -6,7 +6,7 @@
       "email": "myemail@gmail.com",
       "password": "password",
       "role": "admin",
-      "profilepic": "src\\assets\\imagens\\mario1.jpg",
+      "profilepic": "src/assets/imagens/profilepics/mario1.jpg",
       "classes": [
         "Computação Gráfica",
         "Programação Web",
@@ -35,7 +35,7 @@
       "email": "123@esmad.ipp.pt",
       "password": "1234",
       "role": "user",
-      "profilepic": "src\\assets\\imagens\\Sea-turtle.png",
+      "profilepic": "src/assets/imagens/profilepics/Sea-turtle.png",
       "classes": [
         "Sistemas Computacionais",
         "Programação Web",
@@ -69,7 +69,7 @@
       "email": "t@gmail.com",
       "password": "123",
       "role": "user",
-      "profilepic": "/pfps/user.png",
+      "profilepic": "src/assets/imagens/profilepics/user.png",
       "classes": [
         "Programação Web",
         "Bases de Dados",
@@ -87,16 +87,15 @@
       "email": "tav@gmail.com",
       "password": "tav",
       "role": "admin",
-      "profilepic": "src\\assets\\imagens\\Sea-turtle.png",
+      "profilepic": "src/assets/imagens/profilepics/Sea-turtle.png",
       "classes": [
-        "Programação Web",
         "Computação Gráfica",
         "Bases de Dados",
-        "Math",
+        "Programação Web",
         "TEST"
       ],
-      "lvl": 3,
-      "exp": 32,
+      "lvl": 5,
+      "exp": 52,
       "streak": 0,
       "lembretes": [],
       "eventosCalendario": [],
@@ -107,7 +106,7 @@
       "email": "GuilhermelSampaio2006@gmail.com",
       "password": "DeezNutz",
       "role": "user",
-      "profilepic": "image",
+      "profilepic": "src/assets/imagens/profilepics/user.png",
       "classes": [
         "Computação Gráfica",
         "Bases de Dados"
@@ -124,14 +123,37 @@
       "email": "jeff@gmail.com",
       "password": "jeff",
       "role": "user",
-      "profilepic": "src\\assets\\imagens\\mario1.jpg",
-      "classes": [],
+      "profilepic": "src/assets/imagens/profilepics/mario1.jpg",
+      "classes": [
+        "Programação Web",
+        "Computação Gráfica",
+        "Bases de Dados",
+        "TEST"
+      ],
       "lvl": 1,
       "exp": 0,
       "streak": 0,
       "lembretes": [],
       "eventosCalendario": [],
       "id": 6
+    },
+    {
+      "username": "BUD",
+      "email": "bud@gmail.com",
+      "password": "buddy",
+      "role": "admin",
+      "profilepic": "src/assets/imagens/profilepics/mario1.jpg",
+      "classes": [
+        "Bases de Dados",
+        "Computação Gráfica",
+        "Programação Web"
+      ],
+      "lvl": 1,
+      "exp": 0,
+      "streak": 0,
+      "lembretes": [],
+      "eventosCalendario": [],
+      "id": 7
     }
   ],
   "classes": [
@@ -358,6 +380,21 @@
       "id": 3,
       "books": [
         "OL20000996W.json"
+      ],
+      "calendar": [
+        {
+          "id": 0,
+          "color": "blue",
+          "titulo": "evento de teste",
+          "start": "2016-01-10",
+          "repeat": {
+            "every": [
+              1,
+              "weeks"
+            ],
+            "weekdays": 4
+          }
+        }
       ]
     }
   ]
