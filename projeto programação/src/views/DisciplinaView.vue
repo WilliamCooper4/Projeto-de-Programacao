@@ -98,8 +98,7 @@ function giveXP(amount = 10) {
         <button
           id="btnLogin"
           class="btn btn-secondary w-100 rounded-pill mb-1"
-          @click="openCloseClassPicker"
-        >
+          @click="openCloseClassPicker">
           Adicionar Disciplinas
         </button>
         <RouterLink to="/EDis" v-if="auth.user.role === 'admin'"
