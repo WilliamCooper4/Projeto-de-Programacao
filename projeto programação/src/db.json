@@ -330,6 +330,13 @@
           }
         }
       ]
+    },
+    {
+      "name": "Test",
+      "description": "ETSETSETSETS",
+      "exercises": [],
+      "resources": [],
+      "id": 3
     }
   ]
 }

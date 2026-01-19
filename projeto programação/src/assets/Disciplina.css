@@ -1,26 +1,26 @@
 /*Classes exclusivas para a página de disciplina*/
 
-body{
-    color: white;
+body {
+  color: white;
 }
 
-.black-text{
-    color: black;
-    vertical-align: middle;
+.black-text {
+  color: black;
+  vertical-align: middle;
 }
 
-.page-content{
-    position: relative;
-    top: -5em;
-    margin-left: 20%;
-    width: 75%;
-    max-width: 100%;
-    color: black;
-    box-sizing: border-box;
-    overflow-x: hidden;
+.page-content {
+  position: relative;
+  top: 0;
+  margin-left: 20%;
+  width: 75%;
+  max-width: 100%;
+  color: black;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-.side-bar{
-    position: relative;
-    bottom: -0.9rem;
+.side-bar {
+  position: relative;
+  bottom: -0.9rem;
 }
