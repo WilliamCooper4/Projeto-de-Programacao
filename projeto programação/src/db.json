@@ -107,7 +107,7 @@
       "email": "GuilhermelSampaio2006@gmail.com",
       "password": "DeezNutz",
       "role": "user",
-      "profilepic": "image",
+      "profilepic": "src\\assets\\imagens\\mario1.jpg",
       "classes": [
         "Computação Gráfica",
         "Bases de Dados"
