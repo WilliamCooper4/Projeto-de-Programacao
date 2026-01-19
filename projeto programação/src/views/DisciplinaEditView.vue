@@ -1,28 +1,28 @@
 <script setup>
-import "../assets/Disciplina.css"
-import { ref, computed, onMounted } from 'vue'
-import { useAuthStore } from '@/stores/auth'
-import { useClassesStore } from '@/stores/classes'
-import { useUsersStore } from '@/stores/users'
-import "@/api/openlibrary.js"
-import { GetBook } from "@/api/openlibrary.js"
+import "../assets/Disciplina.css";
+import { ref, computed, onMounted } from "vue";
+import { useAuthStore } from "@/stores/auth";
+import { useClassesStore } from "@/stores/classes";
+import { useUsersStore } from "@/stores/users";
+import "@/api/openlibrary.js";
+import { GetBook } from "@/api/openlibrary.js";
 
-const auth = useAuthStore()
-const classesStore = useClassesStore()
-const usersStore = useUsersStore()
+const auth = useAuthStore();
+const classesStore = useClassesStore();
+const usersStore = useUsersStore();
 
-const booksDetails = ref([])
-const booksLoading = ref(false)
-const newClassName = ref('')
-const newClassDesc = ref('')
+const booksDetails = ref([]);
+const booksLoading = ref(false);
+const newClassName = ref("");
+const newClassDesc = ref("");
 
 // Edit modes
-const editingExercises = ref(false)
-const editingResources = ref(false)
-const editingBooks = ref(false)
-const newExercise = ref({ nome: '', link: '' })
-const newResource = ref({ nome: '', link: '', type: 'doc' })
-const newBook = ref('')
+const editingExercises = ref(false);
+const editingResources = ref(false);
+const editingBooks = ref(false);
+const newExercise = ref({ nome: "", link: "" });
+const newResource = ref({ nome: "", link: "", type: "doc" });
+const newBook = ref("");
 
 onMounted(async () => {
   // existing onMounted work
@@ -30,21 +30,21 @@ onMounted(async () => {
   await usersStore.fetchUsers();
 
   // select first class for the user (if any) and load its books
-  selectedClass.value = Classes.value[0] || null
-  if (selectedClass.value) await loadBooksForClass(selectedClass.value)
+  selectedClass.value = Classes.value[0] || null;
+  if (selectedClass.value) await loadBooksForClass(selectedClass.value);
 });
 
 async function loadBooksForClass(cls) {
-  booksDetails.value = []
-  if (!cls || !cls.books || cls.books.length === 0) return
-  booksLoading.value = true
+  booksDetails.value = [];
+  if (!cls || !cls.books || cls.books.length === 0) return;
+  booksLoading.value = true;
   try {
-    const results = await Promise.all(cls.books.map(b => GetBook(b)))
-    booksDetails.value = results.filter(Boolean)
+    const results = await Promise.all(cls.books.map((b) => GetBook(b)));
+    booksDetails.value = results.filter(Boolean);
   } catch (err) {
-    console.error('Erro ao carregar livros da disciplina:', err)
+    console.error("Erro ao carregar livros da disciplina:", err);
   } finally {
-    booksLoading.value = false
+    booksLoading.value = false;
   }
 }
 
@@ -87,47 +87,63 @@ function giveXP(amount = 10) {
 
 // Edit exercises
 function addExercise() {
-  if (!selectedClass.value || !newExercise.value.nome || !newExercise.value.link) return
-  if (!selectedClass.value.exercises) selectedClass.value.exercises = []
-  const id = selectedClass.value.exercises.length > 0 
-    ? Math.max(...selectedClass.value.exercises.map(e => e.id)) + 1 
-    : 0
+  if (
+    !selectedClass.value ||
+    !newExercise.value.nome ||
+    !newExercise.value.link
+  )
+    return;
+  if (!selectedClass.value.exercises) selectedClass.value.exercises = [];
+  const id =
+    selectedClass.value.exercises.length > 0
+      ? Math.max(...selectedClass.value.exercises.map((e) => e.id)) + 1
+      : 0;
   selectedClass.value.exercises.push({
     id,
     nome: newExercise.value.nome,
-    link: newExercise.value.link
-  })
-  saveClass()
-  newExercise.value = { nome: '', link: '' }
+    link: newExercise.value.link,
+  });
+  saveClass();
+  newExercise.value = { nome: "", link: "" };
 }
 
 function deleteExercise(id) {
-  if (!selectedClass.value) return
-  selectedClass.value.exercises = selectedClass.value.exercises.filter(e => e.id !== id)
-  saveClass()
+  if (!selectedClass.value) return;
+  selectedClass.value.exercises = selectedClass.value.exercises.filter(
+    (e) => e.id !== id,
+  );
+  saveClass();
 }
 
 // Edit resources
 function addResource() {
-  if (!selectedClass.value || !newResource.value.nome || !newResource.value.link) return
-  if (!selectedClass.value.resources) selectedClass.value.resources = []
-  const id = selectedClass.value.resources.length > 0 
-    ? Math.max(...selectedClass.value.resources.map(r => r.id)) + 1 
-    : 0
+  if (
+    !selectedClass.value ||
+    !newResource.value.nome ||
+    !newResource.value.link
+  )
+    return;
+  if (!selectedClass.value.resources) selectedClass.value.resources = [];
+  const id =
+    selectedClass.value.resources.length > 0
+      ? Math.max(...selectedClass.value.resources.map((r) => r.id)) + 1
+      : 0;
   selectedClass.value.resources.push({
     id,
     nome: newResource.value.nome,
     link: newResource.value.link,
-    type: newResource.value.type
-  })
-  saveClass()
-  newResource.value = { nome: '', link: '', type: 'doc' }
+    type: newResource.value.type,
+  });
+  saveClass();
+  newResource.value = { nome: "", link: "", type: "doc" };
 }
 
 function deleteResource(id) {
-  if (!selectedClass.value) return
-  selectedClass.value.resources = selectedClass.value.resources.filter(r => r.id !== id)
-  saveClass()
+  if (!selectedClass.value) return;
+  selectedClass.value.resources = selectedClass.value.resources.filter(
+    (r) => r.id !== id,
+  );
+  saveClass();
 }
 
 // Edit books
@@ -142,32 +158,32 @@ function addBook() {
 }
 
 function deleteBook(index) {
-  if (!selectedClass.value) return
-  selectedClass.value.books.splice(index, 1)
-  saveClass()
-  loadBooksForClass(selectedClass.value)
+  if (!selectedClass.value) return;
+  selectedClass.value.books.splice(index, 1);
+  saveClass();
+  loadBooksForClass(selectedClass.value);
 }
 
 async function saveClass() {
-  if (!selectedClass.value) return
-  await classesStore.updateClass(selectedClass.value)
+  if (!selectedClass.value) return;
+  await classesStore.updateClass(selectedClass.value);
 }
 
 async function createClass() {
-	if (!newClassName.value) return
+  if (!newClassName.value) return;
 
-	await classesStore.addClass({
-		name: newClassName.value,
-		description: newClassDesc.value,
-		exercises: [],
-		resources: []
-	})
+  await classesStore.addClass({
+    name: newClassName.value,
+    description: newClassDesc.value,
+    exercises: [],
+    resources: [],
+  });
 
-	newClassName.value = ''
-	newClassDesc.value = ''
+  newClassName.value = "";
+  newClassDesc.value = "";
 }
 function deleteClass(id) {
-	classesStore.deleteClass(id)
+  classesStore.deleteClass(id);
 }
 </script>
 
@@ -178,11 +194,7 @@ function deleteClass(id) {
       <aside class="side-bar">
         <h3>Disciplinas</h3>
         <ul style="padding-bottom: 2em">
-          <li
-            v-for="cls in Classes"
-            :key="cls.id"
-            @click="selectClass(cls)"
-          >
+          <li v-for="cls in Classes" :key="cls.id" @click="selectClass(cls)">
             {{ cls.name }}
           </li>
         </ul>
@@ -208,15 +220,14 @@ function deleteClass(id) {
       <div v-if="showClassPicker" class="modal-back">
         <div class="modal-box">
           <h2 style="text-align: center">Criar Disciplinas</h2>
-      <div class="create-class-inputs">
-				<input v-model="newClassName" placeholder="Nome da disciplina" />
-				<input v-model="newClassDesc" placeholder="Descrição" />
-			</div>
-
+          <div class="create-class-inputs">
+            <input v-model="newClassName" placeholder="Nome da disciplina" />
+            <input v-model="newClassDesc" placeholder="Descrição" />
+          </div>
 
           <div class="actions">
-          <button class="login-btn" @click="createClass">Criar</button>
-          <button class="login-btn" @click="openCloseClassPicker">
+            <button class="login-btn" @click="createClass">Criar</button>
+            <button class="login-btn" @click="openCloseClassPicker">
               Cancelar
             </button>
           </div>
@@ -226,21 +237,37 @@ function deleteClass(id) {
       <!-- conteudo da disciplina -->
       <div class="page-content" v-if="selectedClass">
         <h1>{{ selectedClass.name }}</h1>
+
         <p>{{ selectedClass.description }}</p>
 
         <!-- Exercícios Section -->
         <div class="content-section">
           <div class="section-header">
             <h2>Exercícios</h2>
-            <button @click="editingExercises = !editingExercises" class="edit-btn">
-              {{ editingExercises ? 'Feito' : 'Editar' }}
+            <button
+              @click="editingExercises = !editingExercises"
+              class="edit-btn"
+            >
+              {{ editingExercises ? "Feito" : "Editar" }}
             </button>
           </div>
-          
+
           <ul>
-            <li v-for="ex in selectedClass.exercises" :key="ex.id" class="list-item">
-              <a :href="ex.link" target="_blank" @click.prevent="giveXP(5)">{{ ex.nome }}</a>
-              <button v-if="editingExercises" @click="deleteExercise(ex.id)" class="delete-btn">✕</button>
+            <li
+              v-for="ex in selectedClass.exercises"
+              :key="ex.id"
+              class="list-item"
+            >
+              <a :href="ex.link" target="_blank" @click.prevent="giveXP(5)">{{
+                ex.nome
+              }}</a>
+              <button
+                v-if="editingExercises"
+                @click="deleteExercise(ex.id)"
+                class="delete-btn"
+              >
+                ✕
+              </button>
             </li>
           </ul>
 
@@ -255,15 +282,30 @@ function deleteClass(id) {
         <div class="content-section">
           <div class="section-header">
             <h2>Material de Estudo</h2>
-            <button @click="editingResources = !editingResources" class="edit-btn">
-              {{ editingResources ? 'Feito' : 'Editar' }}
+            <button
+              @click="editingResources = !editingResources"
+              class="edit-btn"
+            >
+              {{ editingResources ? "Feito" : "Editar" }}
             </button>
           </div>
-          
+
           <ul>
-            <li v-for="res in selectedClass.resources" :key="res.id" class="list-item">
-              <a :href="res.link" target="_blank" @click.prevent="giveXP(3)">{{ res.nome }}</a>
-              <button v-if="editingResources" @click="deleteResource(res.id)" class="delete-btn">✕</button>
+            <li
+              v-for="res in selectedClass.resources"
+              :key="res.id"
+              class="list-item"
+            >
+              <a :href="res.link" target="_blank" @click.prevent="giveXP(3)">{{
+                res.nome
+              }}</a>
+              <button
+                v-if="editingResources"
+                @click="deleteResource(res.id)"
+                class="delete-btn"
+              >
+                ✕
+              </button>
             </li>
           </ul>
 
@@ -284,37 +326,55 @@ function deleteClass(id) {
           <div class="section-header">
             <h2>Livros</h2>
             <button @click="editingBooks = !editingBooks" class="edit-btn">
-              {{ editingBooks ? 'Feito' : 'Editar' }}
+              {{ editingBooks ? "Feito" : "Editar" }}
             </button>
           </div>
-          
+
           <ul v-if="booksLoading">
             <li>Carregando livros...</li>
           </ul>
           <ul v-else-if="booksDetails.length">
             <li v-for="(b, idx) in booksDetails" :key="idx" class="list-item">
-              <a :href="b.key ? `https://openlibrary.org${b.key}` : '#'" target="_blank">
-                {{ b.title || (b.works && b.works[0] && b.works[0].title) || 'Sem título' }}
+              <a
+                :href="b.key ? `https://openlibrary.org${b.key}` : '#'"
+                target="_blank"
+              >
+                {{
+                  b.title ||
+                  (b.works && b.works[0] && b.works[0].title) ||
+                  "Sem título"
+                }}
               </a>
-              <button v-if="editingBooks" @click="deleteBook(idx)" class="delete-btn">✕</button>
+              <button
+                v-if="editingBooks"
+                @click="deleteBook(idx)"
+                class="delete-btn"
+              >
+                ✕
+              </button>
             </li>
           </ul>
           <p v-else>Sem livros nesta disciplina</p>
 
           <div v-if="editingBooks" class="add-form">
-            <input v-model="newBook" placeholder="ISBN ou ID do livro (ex: OL17618370W.json)" />
+            <input
+              v-model="newBook"
+              placeholder="ISBN ou ID do livro (ex: OL17618370W.json)"
+            />
             <button @click="addBook" class="add-btn">Adicionar</button>
           </div>
         </div>
-        <button @click="deleteClass(selectedClass.id)" class="delete-btn">Eliminar Disciplina</button>
-			</div>
-		</div>
-	</main>
+        <button @click="deleteClass(selectedClass.id)" class="delete-btn">
+          Eliminar Disciplina
+        </button>
+      </div>
+    </div>
+  </main>
 </template>
 
 <style scoped>
-aside{
-  position:sticky;
+aside {
+  position: sticky;
 }
 .page-layout {
   display: flex;
@@ -540,11 +600,11 @@ aside{
   .side-bar ul li {
     font-size: 0.9rem;
   }
-  
+
   .list-item {
     flex-wrap: wrap;
   }
-  
+
   .delete-btn {
     margin-left: 0;
     margin-top: 0.5rem;
