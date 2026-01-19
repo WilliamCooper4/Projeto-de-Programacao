@@ -92,7 +92,8 @@
         "Programação Web",
         "Computação Gráfica",
         "Bases de Dados",
-        "Math"
+        "Math",
+        "TEST"
       ],
       "lvl": 3,
       "exp": 32,
@@ -329,6 +330,16 @@
             "weekdays": 4
           }
         }
+      ]
+    },
+    {
+      "name": "TEST",
+      "description": "ETSTETSTSTS",
+      "exercises": [],
+      "resources": [],
+      "id": 3,
+      "books": [
+        "OL20000996W.json"
       ]
     }
   ]

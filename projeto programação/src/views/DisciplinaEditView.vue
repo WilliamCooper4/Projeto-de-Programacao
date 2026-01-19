@@ -134,6 +134,7 @@ function deleteResource(id) {
 function addBook() {
   if (!selectedClass.value || !newBook.value) return
   if (!selectedClass.value.books) selectedClass.value.books = []
+  newBook.value += newBook.value.endsWith('.json') ? '' : '.json'
   selectedClass.value.books.push(newBook.value)
   saveClass()
   loadBooksForClass(selectedClass.value)
