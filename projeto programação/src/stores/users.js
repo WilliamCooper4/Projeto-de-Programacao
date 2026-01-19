@@ -20,9 +20,10 @@ export const useUsersStore = defineStore('users', {
 			}
 		},
 
-		async addUser(userEmail, userPassword) {
+		async addUser(username, userEmail, userPassword) {
 			//o id é criado automaticamente, não é preciso por
 			const newUser = {
+				username: username,
 				email: userEmail,
 				password: userPassword,
 				role: 'user',

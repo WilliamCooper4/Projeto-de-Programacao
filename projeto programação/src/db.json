@@ -2,6 +2,7 @@
   "users": [
     {
       "id": 0,
+      "username": "admin",
       "email": "myemail@gmail.com",
       "password": "password",
       "role": "admin",
@@ -30,6 +31,7 @@
     },
     {
       "id": 1,
+      "username": "123",
       "email": "123@esmad.ipp.pt",
       "password": "1234",
       "role": "user",
@@ -63,7 +65,8 @@
       ]
     },
     {
-      "email": "t",
+      "username": "t",
+      "email": "t@gmail.com",
       "password": "123",
       "role": "user",
       "profilepic": "/pfps/user.png",
@@ -80,14 +83,16 @@
       "id": 2
     },
     {
-      "email": "tav",
+      "username": "TAV",
+      "email": "tav@gmail.com",
       "password": "tav",
       "role": "admin",
       "profilepic": "src\\assets\\imagens\\Sea-turtle.png",
       "classes": [
         "Programação Web",
         "Computação Gráfica",
-        "Bases de Dados"
+        "Bases de Dados",
+        "Math"
       ],
       "lvl": 3,
       "exp": 32,
@@ -113,7 +118,8 @@
       "id": 5
     },
     {
-      "email": "jeff",
+      "username": "Jeff",
+      "email": "jeff@gmail.com",
       "password": "jeff",
       "role": "user",
       "profilepic": "src\\assets\\imagens\\mario1.jpg",
@@ -323,6 +329,13 @@
           }
         }
       ]
+    },
+    {
+      "name": "Math",
+      "description": "This is Math",
+      "exercises": [],
+      "resources": [],
+      "id": 3
     }
   ]
 }
