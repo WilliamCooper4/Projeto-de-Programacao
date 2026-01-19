@@ -8,6 +8,7 @@ import "@/api/openlibrary.js";
 import { GetBook } from "@/api/openlibrary.js";
 
 const auth = useAuthStore();
+const user = computed(() => auth.user);
 const classesStore = useClassesStore();
 const usersStore = useUsersStore();
 
@@ -148,12 +149,13 @@ function deleteResource(id) {
 
 // Edit books
 function addBook() {
-  if (!selectedClass.value || !newBook.value) return;
-  if (!selectedClass.value.books) selectedClass.value.books = [];
-  selectedClass.value.books.push(newBook.value);
-  saveClass();
-  loadBooksForClass(selectedClass.value);
-  newBook.value = "";
+  if (!selectedClass.value || !newBook.value) return
+  if (!selectedClass.value.books) selectedClass.value.books = []
+  newBook.value += newBook.value.endsWith('.json') ? '' : '.json'
+  selectedClass.value.books.push(newBook.value)
+  saveClass()
+  loadBooksForClass(selectedClass.value)
+  newBook.value = ''
 }
 
 function deleteBook(index) {
@@ -188,6 +190,7 @@ function deleteClass(id) {
 
 <template>
   <main>
+ <div v-if="user && user.role === 'admin'">
     <div class="page-layout">
       <!-- sidebar -->
       <aside class="side-bar">
@@ -368,6 +371,11 @@ function deleteClass(id) {
         </button>
       </div>
     </div>
+  </div>
+  <div v-else>
+    <h2>Acesso Negado</h2>
+    <p>Você não tem permissão para acessar esta página.</p>
+  </div>
   </main>
 </template>
 

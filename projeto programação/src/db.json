@@ -92,7 +92,8 @@
         "Programação Web",
         "Computação Gráfica",
         "Bases de Dados",
-        "Math"
+        "Math",
+        "TEST"
       ],
       "lvl": 3,
       "exp": 32,
@@ -332,11 +333,32 @@
       ]
     },
     {
-      "name": "Test",
-      "description": "ETSETSETSETS",
-      "exercises": [],
-      "resources": [],
-      "id": 3
+      "name": "TEST",
+      "description": "ETSTETSTSTS",
+      "exercises": [
+        {
+          "id": 0,
+          "nome": "aaaaaaaaaaaa",
+          "link": "aaaaaaaaa"
+        },
+        {
+          "id": 1,
+          "nome": "asdf",
+          "link": "asdf"
+        }
+      ],
+      "resources": [
+        {
+          "id": 0,
+          "nome": "asdf",
+          "link": "asdf",
+          "type": "doc"
+        }
+      ],
+      "id": 3,
+      "books": [
+        "OL20000996W.json"
+      ]
     }
   ]
 }
