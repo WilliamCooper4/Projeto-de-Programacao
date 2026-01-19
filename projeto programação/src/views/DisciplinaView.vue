@@ -102,6 +102,11 @@ function giveXP(amount = 10) {
         >
           Adicionar Disciplinas
         </button>
+        <RouterLink to="/EDis" v-if="auth.user.role === 'admin'"
+          id="btnLogin"
+          class="btn btn-secondary w-100 rounded-pill mb-1">
+          editar disciplinas
+        </RouterLink>
       </aside>
 
       <!-- adicionar disciplinas -->

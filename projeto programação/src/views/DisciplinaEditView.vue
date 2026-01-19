@@ -13,6 +13,8 @@ const usersStore = useUsersStore()
 
 const booksDetails = ref([])
 const booksLoading = ref(false)
+const newClassName = ref('')
+const newClassDesc = ref('')
 
 // Edit modes
 const editingExercises = ref(false)
@@ -152,6 +154,23 @@ async function saveClass() {
   if (!selectedClass.value) return
   await classesStore.updateClass(selectedClass.value)
 }
+
+async function createClass() {
+	if (!newClassName.value) return
+
+	await classesStore.addClass({
+		name: newClassName.value,
+		description: newClassDesc.value,
+		exercises: [],
+		resources: []
+	})
+
+	newClassName.value = ''
+	newClassDesc.value = ''
+}
+function deleteClass(id) {
+	classesStore.deleteClass(id)
+}
 </script>
 
 <template>
@@ -179,35 +198,19 @@ async function saveClass() {
         </button>
       </aside>
 
-      <!-- adicionar disciplinas -->
+      <!-- criar disciplinas -->
       <div v-if="showClassPicker" class="modal-back">
         <div class="modal-box">
-          <h2 style="text-align: center">Escolher Disciplinas</h2>
+          <h2 style="text-align: center">Criar Disciplinas</h2>
+      <div class="create-class-inputs">
+				<input v-model="newClassName" placeholder="Nome da disciplina" />
+				<input v-model="newClassDesc" placeholder="Descrição" />
+			</div>
 
-          <ul>
-            <li v-for="cls in classesStore.classes" :key="cls.id">
-              <label>
-                <input
-                  type="checkbox"
-                  :value="cls.name"
-                  v-model="selectedClasses"
-                />
-                {{ cls.name }}
-              </label>
-            </li>
-          </ul>
 
           <div class="actions">
-            <button
-              class="login-btn"
-              @click="
-                saveClasses();
-                openCloseClassPicker();
-              "
-            >
-              Guardar
-            </button>
-            <button class="login-btn" @click="openCloseClassPicker">
+          <button class="login-btn" @click="createClass">Criar</button>
+          <button class="login-btn" @click="openCloseClassPicker">
               Cancelar
             </button>
           </div>
@@ -376,6 +379,19 @@ aside{
 .modal-box ul {
   list-style: none;
   padding: 0;
+}
+
+.create-class-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.create-class-inputs input {
+  width: 100%;
+  max-width: 300px;
 }
 
 .actions {
