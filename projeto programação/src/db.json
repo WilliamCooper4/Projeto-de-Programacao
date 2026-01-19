@@ -329,13 +329,6 @@
           }
         }
       ]
-    },
-    {
-      "name": "Math",
-      "description": "This is Math",
-      "exercises": [],
-      "resources": [],
-      "id": 3
     }
   ]
 }

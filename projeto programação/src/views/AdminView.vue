@@ -55,9 +55,11 @@ function deleteClass(id) {
       <h2>Lista de Utilizadores</h2>
       <div class="scrolllist">
         <div v-for="u in usersStore.users" :key="u.id" class="admin-row">
-          <span class="user-email">{{ u.email }}</span>
+
+          <span class="user-email">{{u.username}} - {{ u.email }}</span>
 
           <div class="user-actions">
+            <button>select</button>
             <select
               :value="u.role"
               @change="changeRole(u, $event.target.value)"

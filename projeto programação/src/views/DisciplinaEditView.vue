@@ -30,7 +30,7 @@ onMounted(async () => {
   await usersStore.fetchUsers();
 
   // select first class for the user (if any) and load its books
-  selectedClass.value = userClasses.value[0] || null
+  selectedClass.value = Classes.value[0] || null
   if (selectedClass.value) await loadBooksForClass(selectedClass.value)
 });
 
@@ -68,14 +68,11 @@ async function saveClasses() {
   showClassPicker.value = false;
 }
 
-const userClasses = computed(() => {
-  if (!auth.user) return [];
-  return auth.user.classes
-    .map((name) => classesStore.getClassByName(name))
-    .filter(Boolean); // remove se não existir
+const Classes = computed(() => {
+  return classesStore.classes;
 });
 
-const selectedClass = ref(userClasses.value[0] || null);
+const selectedClass = ref(Classes.value[0] || null);
 
 async function selectClass(cls) {
   selectedClass.value = cls;
@@ -181,7 +178,7 @@ function deleteClass(id) {
         <h3>Disciplinas</h3>
         <ul style="padding-bottom: 2em">
           <li
-            v-for="cls in userClasses"
+            v-for="cls in Classes"
             :key="cls.id"
             @click="selectClass(cls)"
           >
@@ -194,7 +191,7 @@ function deleteClass(id) {
           class="btn btn-secondary w-100 rounded-pill mb-1"
           @click="openCloseClassPicker"
         >
-          Adicionar Disciplinas
+          Criar Disciplinas
         </button>
       </aside>
 
@@ -300,6 +297,7 @@ function deleteClass(id) {
             <button @click="addBook" class="add-btn">Adicionar</button>
           </div>
         </div>
+        <button @click="deleteClass(selectedClass.id)" class="delete-btn">Eliminar Disciplina</button>
 			</div>
 		</div>
 	</main>
