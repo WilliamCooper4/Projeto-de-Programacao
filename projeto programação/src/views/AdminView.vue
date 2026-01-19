@@ -26,7 +26,7 @@ function deleteUser(userId) {
 
 const newClassName = ref("");
 const newClassDesc = ref("");
-
+const selecteduser = ref(null);
 async function createClass() {
   if (!newClassName.value) return;
 
@@ -44,6 +44,11 @@ async function createClass() {
 function deleteClass(id) {
   classesStore.deleteClass(id);
 }
+
+function selectUser(user) {
+  selecteduser.value = user;
+}
+
 </script>
 
 <template>
@@ -52,6 +57,11 @@ function deleteClass(id) {
       <div class="title">
         <h1>Painel de Admin</h1>
       </div>
+      <div>
+        <RouterLink to="/EDis">
+          <button>Editar Disciplinas</button>
+        </RouterLink>
+      </div>
       <h2>Lista de Utilizadores</h2>
       <div class="scrolllist">
         <div v-for="u in usersStore.users" :key="u.id" class="admin-row">
@@ -59,7 +69,7 @@ function deleteClass(id) {
           <span class="user-email">{{u.username}} - {{ u.email }}</span>
 
           <div class="user-actions">
-            <button>select</button>
+            <button @click="selectUser(u)">select</button>
             <select
               :value="u.role"
               @change="changeRole(u, $event.target.value)"
@@ -72,24 +82,15 @@ function deleteClass(id) {
           </div>
         </div>
       </div>
-      <h2>Disciplinas</h2>
-      <div>
-        <input v-model="newClassName" placeholder="Nome da disciplina" />
-        <input v-model="newClassDesc" placeholder="Descrição" />
-        <button @click="createClass">Criar</button>
+      <div v-if="selecteduser">
+        <h2>Detalhes do Utilizador</h2>
+        <p>Nome de utilizador: {{ selecteduser.username }}</p>
+        <p>Email: {{ selecteduser.email }}</p>
+        <p>Role: {{ selecteduser.role }}</p>
       </div>
-
-      <div class="scrolllist">
-        <div v-for="c in classesStore.classes" :key="c.id" class="admin-row">
-          <span>{{ c.name }}</span>
-          <button @click="deleteClass(c.id)">Apagar</button>
-        </div>
-      </div>
-
-      <div>
-        <RouterLink to="/EDis">
-          <button>Editar classes</button>
-        </RouterLink>
+      <div v-if="!selecteduser">
+        <h2>Nenhum utilizador selecionado</h2>
+        <p>Por favor, selecione um utilizador para ver os detalhes.</p>
       </div>
     </div>
     <div v-else class="title">

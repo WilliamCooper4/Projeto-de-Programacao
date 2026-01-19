@@ -193,6 +193,14 @@ function deleteClass(id) {
         >
           Criar Disciplinas
         </button>
+        <RouterLink to="/admin">
+          <button
+            id="btnLogin"
+            class="btn btn-secondary w-100 rounded-pill mb-1"
+          >
+            Painel de Admin
+          </button>
+        </RouterLink>
       </aside>
 
       <!-- criar disciplinas -->
