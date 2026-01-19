@@ -335,8 +335,26 @@
     {
       "name": "TEST",
       "description": "ETSTETSTSTS",
-      "exercises": [],
-      "resources": [],
+      "exercises": [
+        {
+          "id": 0,
+          "nome": "aaaaaaaaaaaa",
+          "link": "aaaaaaaaa"
+        },
+        {
+          "id": 1,
+          "nome": "asdf",
+          "link": "asdf"
+        }
+      ],
+      "resources": [
+        {
+          "id": 0,
+          "nome": "asdf",
+          "link": "asdf",
+          "type": "doc"
+        }
+      ],
       "id": 3,
       "books": [
         "OL20000996W.json"

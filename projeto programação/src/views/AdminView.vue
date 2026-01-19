@@ -70,15 +70,6 @@ function selectUser(user) {
 
           <div class="user-actions">
             <button @click="selectUser(u)">select</button>
-            <select
-              :value="u.role"
-              @change="changeRole(u, $event.target.value)"
-            >
-              <option value="user">user</option>
-              <option value="admin">admin</option>
-            </select>
-
-            <button @click="deleteUser(u.id)">Apagar</button>
           </div>
         </div>
       </div>
