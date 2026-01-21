@@ -18,6 +18,7 @@ const email = ref("");
 const Cemail = ref("");
 const password = ref("");
 const Cpassword = ref("");
+const Username = ref("");
 const error = ref("");
 
 function toggleLogin() {
@@ -63,7 +64,7 @@ async function adduser() {
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 	try {
-		if (!email.value || !password.value || !Cemail.value || !Cpassword.value) {
+		if (!email.value || !password.value || !Cemail.value || !Cpassword.value || !Username.value) {
 			throw new Error("Por favor, preencha todos os campos.")
 		}
 
@@ -95,7 +96,7 @@ async function adduser() {
 
 	if (!fail) {
 		console.log("USER ADDED")
-		await usersStore.addUser(email.value, password.value)
+		await usersStore.addUser(Username.value, email.value, password.value)
 		doLogin()
 		resetForm()
 	}
@@ -123,7 +124,7 @@ function resetForm() {
         width="50px"
         class="SmallPfp"
       />
-      {{ auth.user?.email }}</router-link
+      {{ auth.user?.username }}</router-link
     >
     <button
       v-if="!auth.isLoggedIn"
@@ -144,9 +145,18 @@ function resetForm() {
       </div>
 
       <div class="mb-2">
+		<input type="text"
+		  v-if="showRegister"
+		  v-model="Username"
+		  id="CUserName"
+		  class="form-control text-center rounded-pill"
+		  placeholder="Nome de Utilizador"
+		/>
+	  </div>
+		<div class="mb-2">
         <input
           v-model="email"
-          type="text"
+          type="email"
           id="username"
           class="form-control text-center rounded-pill"
           placeholder="Email"
@@ -156,7 +166,7 @@ function resetForm() {
         <input
           v-if="showRegister"
           v-model="Cemail"
-          type="text"
+          type="email"
           id="CUserName"
           class="form-control text-center rounded-pill"
           placeholder="Confirmar Email"
@@ -252,6 +262,7 @@ nav {
 	justify-content: center;
 	align-items: center;
 	font-size: 1.2rem;
+	z-index: 100;
 }
 
 /* Links normais */

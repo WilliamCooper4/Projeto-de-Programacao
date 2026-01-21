@@ -26,14 +26,14 @@
 			</ul>
 		</section>
 
-		<!-- Destaque do utilizador (se estiver logado) -->
-		<section v-if="auth.isLoggedIn" class="user-summary">
-			<h2>Olá, {{ auth.user.email }}!</h2>
-			<p>Já tens {{ auth.user.exp }} XP (nível {{ auth.user.lvl }}) e estás num streak de {{ auth.user.streak }} dias!</p>
-			<div class="xp-bar-background">
-				<div class="xp-bar-fill" :style="{ width: (auth.user.exp % 100) + '%' }"></div>
-			</div>
-		</section>
+    <!-- Destaque do utilizador (se estiver logado) -->
+    <section v-if="auth.isLoggedIn" class="user-summary">
+      <h2>Olá, {{ auth.user.username }}!</h2>
+      <p>Já tens {{ auth.user.exp }} XP (nível {{ auth.user.lvl }}) e estás num streak de {{ auth.user.streak }} dias!</p>
+      <div class="xp-bar-background">
+        <div class="xp-bar-fill" :style="{ width: (auth.user.exp % 100) + '%' }"></div>
+      </div>
+    </section>
 
 	</div>
 </template>

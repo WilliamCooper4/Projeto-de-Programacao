@@ -13,7 +13,9 @@ const classesStore = useClassesStore();
 const selectedClassIds = ref([]);
 
 onMounted(async () => {
-  await classesStore.fetchClasses();
+  if (classesStore.classes.length === 0) {
+    await classesStore.fetchClasses();
+  }
   if (classesStore.classes.length && selectedClassIds.value.length === 0) {
     selectedClassIds.value = [String(classesStore.classes[0].id)];
   }
@@ -97,8 +99,8 @@ const mergedAttributes = computed(() => {
 </script>
 
 <template>
-  <aside class="side-bar">
-				<h3>Disciplinas</h3>
+<aside class="side-bar">
+				<h3>Disciplinas:</h3>
 				<div class="class-picker">
     <label style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.5rem;">
       <input type="checkbox" v-model="allSelected" @change="logState('allSelected')" />
@@ -112,11 +114,12 @@ const mergedAttributes = computed(() => {
     <Calendar class="cal" :attributes="mergedAttributes"  view="weekly"/>
   </div>
 
-  <DxList 
+   <!--<DxList 
      :scrollingEnabled="false"
-   />
+   />-->
 
-	</aside>
+
+</aside>
   <main class="main-content">
     <Calendar class="cal" :attributes="mergedAttributes" expanded=""/>
   </main>

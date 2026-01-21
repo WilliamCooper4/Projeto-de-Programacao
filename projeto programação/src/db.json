@@ -2,10 +2,11 @@
   "users": [
     {
       "id": 0,
+      "username": "admin",
       "email": "myemail@gmail.com",
       "password": "password",
       "role": "admin",
-      "profilepic": "src\\assets\\imagens\\mario1.jpg",
+      "profilepic": "src/assets/imagens/profilepics/mario1.jpg",
       "classes": [
         "Computação Gráfica",
         "Programação Web",
@@ -30,10 +31,11 @@
     },
     {
       "id": 1,
+      "username": "123",
       "email": "123@esmad.ipp.pt",
       "password": "1234",
       "role": "user",
-      "profilepic": "src\\assets\\imagens\\Sea-turtle.png",
+      "profilepic": "src/assets/imagens/profilepics/Sea-turtle.png",
       "classes": [
         "Sistemas Computacionais",
         "Programação Web",
@@ -63,10 +65,11 @@
       ]
     },
     {
-      "email": "t",
+      "username": "t",
+      "email": "t@gmail.com",
       "password": "123",
       "role": "user",
-      "profilepic": "/pfps/user.png",
+      "profilepic": "src/assets/imagens/profilepics/user.png",
       "classes": [
         "Programação Web",
         "Bases de Dados",
@@ -80,27 +83,30 @@
       "id": 2
     },
     {
-      "email": "tav",
+      "username": "TAV",
+      "email": "tav@gmail.com",
       "password": "tav",
       "role": "admin",
-      "profilepic": "src\\assets\\imagens\\Sea-turtle.png",
+      "profilepic": "src/assets/imagens/profilepics/Sea-turtle.png",
       "classes": [
-        "Programação Web",
         "Computação Gráfica",
-        "Bases de Dados"
+        "Bases de Dados",
+        "Programação Web",
+        "TEST"
       ],
-      "lvl": 3,
-      "exp": 21,
+      "lvl": 5,
+      "exp": 52,
       "streak": 0,
       "lembretes": [],
       "eventosCalendario": [],
       "id": 4
     },
     {
+      "username": "William",
       "email": "GuilhermelSampaio2006@gmail.com",
       "password": "DeezNutz",
       "role": "user",
-      "profilepic": "image",
+      "profilepic": "src/assets/imagens/profilepics/user.png",
       "classes": [
         "Computação Gráfica",
         "Bases de Dados"
@@ -113,17 +119,41 @@
       "id": 5
     },
     {
-      "email": "jeff",
+      "username": "Jeff",
+      "email": "jeff@gmail.com",
       "password": "jeff",
       "role": "user",
-      "profilepic": "src\\assets\\imagens\\mario1.jpg",
-      "classes": [],
+      "profilepic": "src/assets/imagens/profilepics/mario1.jpg",
+      "classes": [
+        "Programação Web",
+        "Computação Gráfica",
+        "Bases de Dados",
+        "TEST"
+      ],
       "lvl": 1,
       "exp": 0,
       "streak": 0,
       "lembretes": [],
       "eventosCalendario": [],
       "id": 6
+    },
+    {
+      "username": "BUD",
+      "email": "bud@gmail.com",
+      "password": "buddy",
+      "role": "admin",
+      "profilepic": "src/assets/imagens/profilepics/mario1.jpg",
+      "classes": [
+        "Bases de Dados",
+        "Computação Gráfica",
+        "Programação Web"
+      ],
+      "lvl": 1,
+      "exp": 0,
+      "streak": 0,
+      "lembretes": [],
+      "eventosCalendario": [],
+      "id": 7
     }
   ],
   "classes": [
@@ -163,6 +193,9 @@
           "nome": "Passo-a-passo: FETCH a mock server",
           "link": "https://youtu.be/bleEztMsSDk"
         }
+      ],
+      "books": [
+        "OL17618370W.json"
       ],
       "calendar": [
         {
@@ -234,6 +267,9 @@
           "link": "https://www.youtube.com/watch?v=jNQXAC9IVRw&vl=en"
         }
       ],
+      "books": [
+        "OL262463W.json"
+      ],
       "calendar": [
         {
           "id": 0,
@@ -286,6 +322,10 @@
           "link": "https://youtu.be/bleEztMsSDk"
         }
       ],
+      "books": [
+        "OL60631287M.json",
+        "OL262463W.json"
+      ],
       "calendar": [
         {
           "id": 0,
@@ -307,6 +347,49 @@
           "repeat": {
             "every": [
               2,
+              "weeks"
+            ],
+            "weekdays": 4
+          }
+        }
+      ]
+    },
+    {
+      "name": "TEST",
+      "description": "ETSTETSTSTS",
+      "exercises": [
+        {
+          "id": 0,
+          "nome": "aaaaaaaaaaaa",
+          "link": "aaaaaaaaa"
+        },
+        {
+          "id": 1,
+          "nome": "asdf",
+          "link": "asdf"
+        }
+      ],
+      "resources": [
+        {
+          "id": 0,
+          "nome": "asdf",
+          "link": "asdf",
+          "type": "doc"
+        }
+      ],
+      "id": 3,
+      "books": [
+        "OL20000996W.json"
+      ],
+      "calendar": [
+        {
+          "id": 0,
+          "color": "blue",
+          "titulo": "evento de teste",
+          "start": "2016-01-10",
+          "repeat": {
+            "every": [
+              1,
               "weeks"
             ],
             "weekdays": 4
