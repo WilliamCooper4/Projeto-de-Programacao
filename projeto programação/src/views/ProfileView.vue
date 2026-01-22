@@ -1,9 +1,9 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { useAuthStore } from '@/stores/auth'
+import { useAuthStore } from '@/stores/auth.js'
 import { useRouter } from 'vue-router'
-import { useClassesStore } from '@/stores/classes'
-import { useUsersStore } from '@/stores/users'
+import { useClassesStore } from '@/stores/classes.js'
+import { useUsersStore } from '@/stores/users.js'
 
 const router = useRouter()
 const auth = useAuthStore()

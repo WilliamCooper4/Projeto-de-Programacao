@@ -1,9 +1,9 @@
 <script setup>
 import "../assets/Disciplina.css";
 import { ref, computed, onMounted } from "vue";
-import { useAuthStore } from "@/stores/auth";
-import { useClassesStore } from "@/stores/classes";
-import { useUsersStore } from "@/stores/users";
+import { useAuthStore } from "@/stores/auth.js";
+import { useClassesStore } from "@/stores/classes.js";
+import { useUsersStore } from "@/stores/users.js";
 import "@/api/openlibrary.js";
 import { GetBook } from "@/api/openlibrary.js";
 

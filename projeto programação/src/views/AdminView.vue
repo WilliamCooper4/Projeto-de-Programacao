@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted, computed, ref } from "vue";
-import { useUsersStore } from "@/stores/users";
-import { useClassesStore } from "@/stores/classes";
-import { useAuthStore } from "@/stores/auth";
+import { useUsersStore } from "@/stores/users.js";
+import { useClassesStore } from "@/stores/classes.js";
+import { useAuthStore } from "@/stores/auth.js";
 
 const auth = useAuthStore();
 const user = computed(() => auth.user);

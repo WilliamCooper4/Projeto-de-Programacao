@@ -6,7 +6,7 @@
 import { ref, computed, onMounted } from 'vue';
 import { Calendar, DatePicker } from 'v-calendar';
 import 'v-calendar/style.css';
-import { useClassesStore } from '@/stores/classes';
+import { useClassesStore } from '@/stores/classes.js';
 
 const classesStore = useClassesStore();
 
@@ -44,9 +44,11 @@ function toggleSelectAll() {
     selectedClassIds.value = classesStore.classes.map(c => String(c.id));
   }
 }
+
 function logState(label) {
   console.log(label, 'allSelected=', allSelected.value, 'selectedClassIds=', selectedClassIds.value);
 }
+
 function parseEventDate(input) {
   if (input === undefined || input === null) return null;
   // código para datas simples
