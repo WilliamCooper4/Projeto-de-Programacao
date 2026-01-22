@@ -87,15 +87,16 @@
       "email": "tav@gmail.com",
       "password": "tav",
       "role": "admin",
-      "profilepic": "src/assets/imagens/profilepics/Sea-turtle.png",
+      "profilepic": "src\\assets\\imagens\\Sea-turtle.png",
       "classes": [
+        "Programação Web",
         "Computação Gráfica",
         "Bases de Dados",
-        "Programação Web",
+        "Math",
         "TEST"
       ],
-      "lvl": 5,
-      "exp": 52,
+      "lvl": 3,
+      "exp": 82,
       "streak": 0,
       "lembretes": [],
       "eventosCalendario": [],
@@ -123,13 +124,8 @@
       "email": "jeff@gmail.com",
       "password": "jeff",
       "role": "user",
-      "profilepic": "src/assets/imagens/profilepics/mario1.jpg",
-      "classes": [
-        "Programação Web",
-        "Computação Gráfica",
-        "Bases de Dados",
-        "TEST"
-      ],
+      "profilepic": "src\\assets\\imagens\\mario1.jpg",
+      "classes": [],
       "lvl": 1,
       "exp": 0,
       "streak": 0,
@@ -385,15 +381,8 @@
         {
           "id": 0,
           "color": "blue",
-          "titulo": "evento de teste",
-          "start": "2016-01-10",
-          "repeat": {
-            "every": [
-              1,
-              "weeks"
-            ],
-            "weekdays": 4
-          }
+          "titulo": "demons",
+          "data": "2026-01-10"
         }
       ]
     }
