@@ -505,7 +505,7 @@ function deleteClass(id) {
                     v-if="dateItem.repeat" 
                     class="badge badge-repeating"
                   >
-                    Repetindo
+                    Recorrente
                   </span>
                   <span 
                     v-else 
