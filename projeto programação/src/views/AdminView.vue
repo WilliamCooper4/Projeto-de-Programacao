@@ -108,9 +108,6 @@ async function saveClasses() {
               <option value="admin">admin</option>
             </select></p>
             <button @click="deleteUser(selecteduser.id)">Apagar</button>
-            <button class="btn btn-secondary rounded-pill mb-1" @click="openCloseClassPicker">
-              Editar Disciplinas
-            </button>
       </div>
       <div v-if="!selecteduser">
         <h2>Nenhum utilizador selecionado</h2>
