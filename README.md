@@ -1,5 +1,4 @@
-# Projeto Programação Web
-## Study Tracker
+# Projeto Programação Web - Study Tracker
 Este projeto pretende simular um portal oficial de acompanhamento de disciplinas de uma escola fictícia.
 
 # Como Correr
