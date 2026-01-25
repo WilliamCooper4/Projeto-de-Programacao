@@ -115,6 +115,7 @@ async function deleteAccount() {
         </li>
       </ul>
       <button
+        v-if="user.role === 'admin'"
         class="btn btn-secondary rounded-pill mb-1"
         @click="openCloseClassPicker"
       >
