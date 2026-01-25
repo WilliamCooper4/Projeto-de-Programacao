@@ -1,7 +1,8 @@
-npm install
+# Projeto Programação Web
+## Study Tracker
+Este projeto pretende simular um portal oficial de acompanhamento de disciplinas de uma escola fictícia.
 
-codigo a correr
-
+# Como Correr
 cd "projeto programação"
 npm run dev
 
