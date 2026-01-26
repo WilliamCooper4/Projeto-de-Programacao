@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted, computed, ref } from "vue";
-import { useUsersStore } from "@/stores/users";
-import { useClassesStore } from "@/stores/classes";
-import { useAuthStore } from "@/stores/auth";
+import { useUsersStore } from "@/stores/users.js";
+import { useClassesStore } from "@/stores/classes.js";
+import { useAuthStore } from "@/stores/auth.js";
 
 const auth = useAuthStore();
 const user = computed(() => auth.user);
@@ -108,9 +108,6 @@ async function saveClasses() {
               <option value="admin">admin</option>
             </select></p>
             <button @click="deleteUser(selecteduser.id)">Apagar</button>
-            <button class="btn btn-secondary rounded-pill mb-1" @click="openCloseClassPicker">
-              Editar Disciplinas
-            </button>
       </div>
       <div v-if="!selecteduser">
         <h2>Nenhum utilizador selecionado</h2>
